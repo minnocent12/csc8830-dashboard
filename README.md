@@ -10,14 +10,16 @@ repository:
 - Module 3: https://github.com/minnocent12/csc8830-module-3
 - Module 4: https://github.com/minnocent12/csc8830-module-4
 
-This repository does not contain module implementation code of its own. It pulls each module
-in as a git submodule and reuses each module's `moduleN.webapp.pages.get_pages()` provider
-through the shared dashboard shell in `dashboard/`.
+This repository carries no independent implementation of its own. `Module_2/src`,
+`Module_3/src`, and `Module_4/src` are plain copies of each module's `src/` tree, kept only so
+a static host (Streamlit Community Cloud) can import `moduleN.webapp.pages.get_pages()`
+without needing git submodule support. The shared dashboard shell that wires the pages
+together lives in `dashboard/`.
 
 ## Run locally
 
 ```bash
-git clone --recurse-submodules https://github.com/minnocent12/csc8830-dashboard.git
+git clone https://github.com/minnocent12/csc8830-dashboard.git
 cd csc8830-dashboard
 python -m venv .venv
 source .venv/bin/activate
@@ -25,22 +27,19 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-If you already cloned without `--recurse-submodules`, run:
+## Updating a module's copied source
+
+After pushing changes to a module's own repository, refresh its vendored copy here with
+`scripts/sync_module_src.sh`:
 
 ```bash
-git submodule update --init --recursive
+scripts/sync_module_src.sh Module_2
+git add Module_2/src
+git commit -m "Sync Module 2 source"
+git push
 ```
 
-## Updating a module
-
-Each `Module_N/` directory is a submodule pointer to that module's own repository. To pull in
-the latest commit from a module after it changes:
-
-```bash
-git submodule update --remote Module_2
-git add Module_2
-git commit -m "Update Module 2 submodule"
-```
+Streamlit Community Cloud redeploys automatically on every push to `main`.
 
 ## Deployment
 

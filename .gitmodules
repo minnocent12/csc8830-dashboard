@@ -1,9 +1,0 @@
-[submodule "Module_2"]
-	path = Module_2
-	url = https://github.com/minnocent12/csc8830-module-2.git
-[submodule "Module_3"]
-	path = Module_3
-	url = https://github.com/minnocent12/csc8830-module-3.git
-[submodule "Module_4"]
-	path = Module_4
-	url = https://github.com/minnocent12/csc8830-module-4.git
