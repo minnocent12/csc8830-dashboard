@@ -6,12 +6,13 @@
 # Usage: scripts/sync_module_src.sh Module_2
 set -euo pipefail
 
-MODULE="${1:?usage: sync_module_src.sh <Module_2|Module_3|Module_4>}"
+MODULE="${1:?usage: sync_module_src.sh <Module_2|Module_3|Module_4|Module_5-6>}"
 
 case "$MODULE" in
   Module_2) URL="https://github.com/minnocent12/csc8830-module-2.git" ;;
   Module_3) URL="https://github.com/minnocent12/csc8830-module-3.git" ;;
   Module_4) URL="https://github.com/minnocent12/csc8830-module-4.git" ;;
+  Module_5-6) URL="https://github.com/minnocent12/csc8830-module-5-6.git" ;;
   *) echo "unknown module: $MODULE" >&2; exit 1 ;;
 esac
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

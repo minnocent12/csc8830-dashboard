@@ -26,6 +26,7 @@ _MODULE_PAGE_MODULES = (
     ("Module 2", "module2.webapp.pages"),
     ("Module 3", "module3.webapp.pages"),
     ("Module 4", "module4.webapp.pages"),
+    ("Module 5-6", "module5_6.webapp.pages"),
 )
 
 
