@@ -7,11 +7,13 @@ from typing import Sequence
 import streamlit as st
 
 from module3.webapp._page import PageSpec
+from module3.webapp.design import inject_global_styles
 
 
 def render_app(pages: Sequence[PageSpec], *, title: str = "CSc 8830 - Module 3") -> None:
     """Render a sidebar of pages grouped by module label."""
     st.set_page_config(page_title=title, layout="wide")
+    inject_global_styles()
     if not pages:
         st.error("No pages registered.")
         return

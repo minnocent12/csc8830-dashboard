@@ -7,6 +7,7 @@ from collections.abc import Sequence
 import streamlit as st
 
 from dashboard._page import DashboardPage
+from dashboard.design import inject_global_styles
 
 
 def render_app(
@@ -17,6 +18,7 @@ def render_app(
 ) -> None:
     """Render all module pages in one sidebar-driven Streamlit app."""
     st.set_page_config(page_title=title, layout="wide")
+    inject_global_styles()
 
     if not pages:
         st.error("No module pages are registered.")
