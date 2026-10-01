@@ -51,10 +51,31 @@ def discover_page_providers() -> tuple[list[PageProvider], list[str]]:
     return providers, notices
 
 
+def discover_module_summaries() -> dict[str, Callable[[], object]]:
+    """Optional Home status providers: ``<module>.webapp.summary.get_module_summary``.
+
+    A module without a summary module, or without that callable, simply shows no status
+    chip on Home; nothing about it is required.
+    """
+    summaries: dict[str, Callable[[], object]] = {}
+    for module_label, import_path in _MODULE_PAGE_MODULES:
+        summary_path = import_path.rsplit(".", maxsplit=1)[0] + ".summary"
+        try:
+            module = importlib.import_module(summary_path)
+        except ModuleNotFoundError as exc:
+            if exc.name is not None and summary_path.startswith(exc.name):
+                continue
+            raise
+        provider = getattr(module, "get_module_summary", None)
+        if callable(provider):
+            summaries[module_label] = provider
+    return summaries
+
+
 def main() -> None:
     """Render the combined course dashboard."""
     providers, notices = discover_page_providers()
-    render_app(collect_pages(providers), notices=notices)
+    render_app(collect_pages(providers), notices=notices, summaries=discover_module_summaries())
 
 
 if __name__ == "__main__":
