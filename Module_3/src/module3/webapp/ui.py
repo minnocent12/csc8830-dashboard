@@ -13,8 +13,8 @@ IMAGE_TYPES = ["jpg", "jpeg", "png", "bmp", "tif", "tiff"]
 def results_missing_notice() -> None:
     """Show the standard notice for generated experiment results."""
     st.warning(
-        "Results have not been generated yet. Run `python scripts/generate_sample_image.py` "
-        "and `python scripts/run_experiments.py` from the Module_3 repository root."
+        "Experiment results are not available yet. Generate them with the Module 3 "
+        "experiment script, then reload this page."
     )
 
 

@@ -28,8 +28,10 @@ def _load_user_or_sample_image(label: str) -> tuple[np.ndarray | None, str]:
         return decode_image_bgr(upload.getvalue()), upload.name
     if _SAMPLE_IMAGE.is_file():
         return load_image_bgr(_SAMPLE_IMAGE), _SAMPLE_IMAGE.name
-    st.warning("No uploaded image and no bundled sample image found.")
-    st.code("python scripts/generate_sample_image.py")
+    st.warning(
+        "No image uploaded and the bundled sample image is not available. Upload an image to "
+        "continue."
+    )
     return None, ""
 
 
@@ -124,9 +126,9 @@ def _theory_page() -> None:
     st.header("Theory")
     doc = _DOCS_DIR / "CONVOLUTION_THEOREM.md"
     if not doc.is_file():
-        st.error(f"Theory document not found: {doc}")
+        st.error("The convolution theorem derivation is not available.")
         return
-    st.caption(f"Source: `docs/{doc.name}`")
+    st.caption("Written derivation of the convolution theorem.")
     st.markdown(doc.read_text(encoding="utf-8"))
 
 
