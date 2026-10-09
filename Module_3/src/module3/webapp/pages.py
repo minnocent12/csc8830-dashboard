@@ -13,6 +13,11 @@ from module3.kernels import KernelSpec, make_kernel
 from module3.spatial import apply_filter2d_bgr
 from module3.visualization import contrast_stretch
 from module3.webapp._page import PageSpec
+from module3.webapp.design.components import (
+    equation_block,
+    page_header as kit_page_header,
+    theory_section,
+)
 from module3.webapp.ui import IMAGE_TYPES, results_missing_notice, show_bgr_image, show_gray_image
 
 _REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -123,13 +128,78 @@ def _experimental_validation_page() -> None:
 
 
 def _theory_page() -> None:
-    st.header("Theory")
+    kit_page_header(
+        "Theory",
+        eyebrow=_MODULE,
+        description="Written derivation of the convolution theorem for the Module 3 image filtering implementation.",
+    )
+
     doc = _DOCS_DIR / "CONVOLUTION_THEOREM.md"
     if not doc.is_file():
         st.error("The convolution theorem derivation is not available.")
         return
+
     st.caption("Written derivation of the convolution theorem.")
-    st.markdown(doc.read_text(encoding="utf-8"))
+
+    with theory_section("Variables"):
+        st.markdown(
+            "- `f[x, y]`: grayscale input image intensity at pixel coordinate `(x, y)`.\n"
+            "- `h[m, n]`: spatial-domain blur kernel at kernel coordinate `(m, n)`.\n"
+            "- `g[x, y]`: filtered image.\n"
+            "- `*`: discrete 2D convolution.\n"
+            "- `F[u, v]`: 2D discrete Fourier transform (DFT) of `f[x, y]`.\n"
+            "- `H[u, v]`: 2D DFT of `h[m, n]`.\n"
+            "- `G[u, v]`: 2D DFT of `g[x, y]`."
+        )
+
+    with theory_section("Derivation"):
+        st.markdown("The spatial-domain filtering operation is")
+        equation_block(
+            r"g[x, y] = (f * h)[x, y] = \sum_m \sum_n f[x-m,\, y-n]\, h[m, n]",
+        )
+        st.markdown("The 2D DFT of `g` is")
+        equation_block(
+            r"G[u, v] = \sum_x \sum_y g[x, y]\, \exp\!\left(-j\,2\pi"
+            r" \left(\frac{ux}{M} + \frac{vy}{N}\right)\right)",
+        )
+        st.markdown("Substitute the convolution definition:")
+        equation_block(
+            r"G[u, v] = \sum_x \sum_y \sum_m \sum_n"
+            r" f[x-m,\, y-n]\, h[m, n]\, \exp\!\left(-j\,2\pi"
+            r" \left(\frac{ux}{M} + \frac{vy}{N}\right)\right)",
+        )
+        st.markdown("Let `a = x - m` and `b = y - n`, so `x = a + m` and `y = b + n`:")
+        equation_block(
+            r"G[u, v] = \sum_m \sum_n h[m, n] \sum_a \sum_b f[a, b]\, \exp\!\left(-j\,2\pi"
+            r" \left(\frac{u(a+m)}{M} + \frac{v(b+n)}{N}\right)\right)",
+        )
+        st.markdown("Split the exponential into an image-coordinate factor and a kernel-coordinate factor:")
+        equation_block(
+            r"G[u, v] = \sum_m \sum_n h[m, n]\, \exp\!\left(-j\,2\pi"
+            r" \left(\frac{um}{M} + \frac{vn}{N}\right)\right)"
+            r" \sum_a \sum_b f[a, b]\, \exp\!\left(-j\,2\pi"
+            r" \left(\frac{ua}{M} + \frac{vb}{N}\right)\right)",
+        )
+        st.markdown(
+            "The second sum is the DFT of the image, `F[u, v]`. "
+            "The first sum is the DFT of the kernel, `H[u, v]`. Therefore:"
+        )
+        equation_block(r"G[u, v] = H[u, v]\, F[u, v]")
+        st.markdown("So:")
+        equation_block(r"\text{DFT}\{f * h\} = \text{DFT}\{f\}\, \text{DFT}\{h\}")
+        st.markdown("and the equivalent filtering result can be recovered with the inverse transform:")
+        equation_block(r"f * h = \text{IDFT}\!\left(F[u, v]\, H[u, v]\right)")
+
+    with theory_section("Connection to the Implementation"):
+        st.markdown(
+            "The theorem above describes convolution on a domain where the shifted values are "
+            "well-defined. An FFT computes circular convolution unless the arrays are padded. "
+            "This project zero-pads the image by the kernel radius on all sides, embeds the "
+            "kernel into the same padded shape, rolls the kernel so its center is at the DFT "
+            "origin, multiplies the spectra, applies the inverse FFT, and crops the original "
+            "image region. That recipe makes the Fourier-domain result match the zero-boundary "
+            "spatial convolution used by `cv2.filter2D`."
+        )
 
 
 def get_pages() -> list[PageSpec]:
