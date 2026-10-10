@@ -1,6 +1,7 @@
 """Module 3 Streamlit pages and the ``get_pages`` provider."""
 from __future__ import annotations
 
+import csv
 from pathlib import Path
 
 import cv2
@@ -14,11 +15,13 @@ from module3.spatial import apply_filter2d_bgr
 from module3.visualization import contrast_stretch
 from module3.webapp._page import PageSpec
 from module3.webapp.design.components import (
+    data_table,
     equation_block,
     page_header as kit_page_header,
+    section_header,
     theory_section,
 )
-from module3.webapp.ui import IMAGE_TYPES, results_missing_notice, show_bgr_image, show_gray_image
+from module3.webapp.ui import IMAGE_TYPES, show_bgr_image, show_gray_image
 
 _REPO_ROOT = Path(__file__).resolve().parents[3]
 _DOCS_DIR = _REPO_ROOT / "docs"
@@ -111,20 +114,65 @@ def _comparison_page() -> None:
 
 
 def _experimental_validation_page() -> None:
-    st.header("Experimental Validation")
+    kit_page_header(
+        "Experimental Validation",
+        eyebrow=_MODULE,
+        description=(
+            "Numerical comparison of the spatial-domain and Fourier-domain filtering paths "
+            "across six kernel configurations, verifying that both methods produce equivalent "
+            "results on the same input."
+        ),
+    )
+
     results_doc = _RESULTS_DIR / "experiment_results.md"
     if not results_doc.is_file():
-        results_missing_notice()
+        st.info(
+            "Experiment results are not available yet. Generate them with the Module 3 "
+            "experiment script, then reload this page."
+        )
         return
-    st.markdown(results_doc.read_text(encoding="utf-8"))
+
+    section_header("Input")
+    st.markdown(
+        "Both filtering paths run on the bundled Module 3 sample image using matched "
+        "zero boundary conditions and float64 arithmetic throughout."
+    )
+
+    section_header("Validation Results")
     csv_path = _RESULTS_DIR / "experiment_results.csv"
     if csv_path.is_file():
-        st.download_button(
-            "Download CSV",
-            data=csv_path.read_text(encoding="utf-8"),
-            file_name="experiment_results.csv",
-            mime="text/csv",
+        with open(csv_path, newline="", encoding="utf-8") as fh:
+            rows = [
+                {
+                    "Experiment": int(r["experiment"]),
+                    "Filter": r["filter"],
+                    "Kernel Size": f"{r['kernel_size']}x{r['kernel_size']}",
+                    "Spatial vs. Fourier MAE": float(r["mae"]),
+                    "MSE": float(r["mse"]),
+                    "RMSE": float(r["rmse"]),
+                    "Max Abs Error": float(r["max_abs_error"]),
+                    "PSNR (dB)": float(r["psnr_db"]),
+                    "Observation": r["observation"],
+                }
+                for r in csv.DictReader(fh)
+            ]
+        data_table(
+            rows,
+            column_config={
+                "Spatial vs. Fourier MAE": st.column_config.NumberColumn(format="%.6e"),
+                "MSE": st.column_config.NumberColumn(format="%.6e"),
+                "RMSE": st.column_config.NumberColumn(format="%.6e"),
+                "Max Abs Error": st.column_config.NumberColumn(format="%.6e"),
+                "PSNR (dB)": st.column_config.NumberColumn(format="%.2f"),
+            },
+            hide_index=True,
         )
+    else:
+        # CSV not available: fall back to the markdown table from the results document.
+        doc_text = results_doc.read_text(encoding="utf-8")
+        table_lines = [ln for ln in doc_text.splitlines() if ln.startswith("|")]
+        if table_lines:
+            st.markdown("\n".join(table_lines))
 
 
 def _theory_page() -> None:
