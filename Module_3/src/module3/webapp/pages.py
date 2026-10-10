@@ -15,8 +15,11 @@ from module3.spatial import apply_filter2d_bgr
 from module3.visualization import contrast_stretch
 from module3.webapp._page import PageSpec
 from module3.webapp.design.components import (
+    MetricSpec,
+    configuration_card,
     data_table,
     equation_block,
+    metric_row,
     page_header as kit_page_header,
     section_header,
     theory_section,
@@ -57,13 +60,26 @@ def _show_kernel(kernel_spec: KernelSpec) -> None:
 
 
 def _filtering_demo_page() -> None:
-    st.header("Image Blurring")
+    kit_page_header(
+        "Image Blurring",
+        eyebrow=_MODULE,
+        description=(
+            "Apply a configurable low-pass blur filter to an input image and compare the original "
+            "and filtered results side by side."
+        ),
+    )
+
+    section_header("Input")
     image, image_name = _load_user_or_sample_image("Image")
     if image is None:
         return
-    kernel_spec = _kernel_controls("demo")
-    _show_kernel(kernel_spec)
 
+    section_header("Configuration")
+    with configuration_card(title=None):
+        kernel_spec = _kernel_controls("demo")
+
+    section_header("Results")
+    _show_kernel(kernel_spec)
     filtered = apply_filter2d_bgr(image, kernel_spec.kernel, border_type=cv2.BORDER_REFLECT_101)
     st.caption(
         "Display preview uses per-channel BGR filtering with BORDER_REFLECT_101. "
@@ -77,14 +93,28 @@ def _filtering_demo_page() -> None:
 
 
 def _comparison_page() -> None:
-    st.header("Spatial vs Fourier")
+    kit_page_header(
+        "Spatial vs Fourier",
+        eyebrow=_MODULE,
+        description=(
+            "Compare spatial-domain convolution and Fourier-domain filtering on the same input, "
+            "verifying that both methods produce equivalent results via the convolution theorem."
+        ),
+    )
+
+    section_header("Input")
     image, image_name = _load_user_or_sample_image("Image for comparison")
     if image is None:
         return
-    kernel_spec = _kernel_controls("comparison")
+
+    section_header("Configuration")
+    with configuration_card(title=None):
+        kernel_spec = _kernel_controls("comparison")
+
     gray = bgr_to_gray_float64(image)
     result = compare_spatial_fourier(gray, kernel_spec.kernel)
 
+    section_header("Comparison Results")
     st.caption(
         "Comparison uses grayscale float64 data and matched zero boundary conditions in both "
         "paths so the measured errors test the convolution theorem rather than edge-policy differences."
@@ -102,14 +132,14 @@ def _comparison_page() -> None:
             caption="Difference, contrast-stretched",
             width="stretch",
         )
-
-    m1, m2, m3, m4, m5 = st.columns(5)
-    m1.metric("MAE", f"{result.metrics.mae:.3e}")
-    m2.metric("MSE", f"{result.metrics.mse:.3e}")
-    m3.metric("RMSE", f"{result.metrics.rmse:.3e}")
-    m4.metric("Max error", f"{result.metrics.max_abs_error:.3e}")
     psnr = "inf" if np.isinf(result.metrics.psnr_db) else f"{result.metrics.psnr_db:.2f}"
-    m5.metric("PSNR (dB)", psnr)
+    metric_row([
+        MetricSpec("MAE", f"{result.metrics.mae:.3e}"),
+        MetricSpec("MSE", f"{result.metrics.mse:.3e}"),
+        MetricSpec("RMSE", f"{result.metrics.rmse:.3e}"),
+        MetricSpec("Max error", f"{result.metrics.max_abs_error:.3e}"),
+        MetricSpec("PSNR (dB)", psnr),
+    ])
     st.caption(f"Max discarded imaginary component after inverse FFT: {result.max_imaginary_abs:.3e}.")
 
 
