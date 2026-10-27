@@ -22,6 +22,7 @@ from module7.webapp.ui import (
     render_physical_comparison,
     render_public_json,
     render_status,
+    diagnostic_table,
     section,
 )
 
@@ -134,7 +135,7 @@ def _render_record(spec: EvidenceSpec) -> None:
     render_image_pair(
         bundle.root,
         list(spec.view_assets),
-        ["Stereo View 1 - curated display image", "Stereo View 2 - curated display image"],
+        ["Stereo View 1", "Stereo View 2"],
     )
     render_diagnostics(bundle.root, list(spec.diagnostic_assets))
     render_metadata(record)
@@ -163,6 +164,17 @@ def _render_rectangle(record: dict[str, Any]) -> None:
     else:
         st.info("No accepted rectangle dimensions are available for this record.")
     if quality:
+        opposite = quality.get("opposite_edge_lengths_mm", {})
+        right_angles = quality.get("right_angle_deviations_degrees")
+        diagnostic_table([
+            ("Geometry gates", "Passed" if quality.get("all_existing_shape_gates_passed") else "Not passed"),
+            ("Planarity RMS", quality.get("planarity_rms_mm")),
+            ("Maximum planarity deviation", quality.get("planarity_max_mm")),
+            ("Maximum right-angle deviation", max(right_angles) if right_angles else None),
+            ("Width edge lengths", opposite.get("width")),
+            ("Height edge lengths", opposite.get("height")),
+        ])
+    if quality:
         render_public_json(quality, caption="Applicable rectangle geometry diagnostics")
 
 
@@ -170,12 +182,30 @@ def _render_circle(record: dict[str, Any]) -> None:
     st.subheader("Recovered metric geometry and circle diagnostics")
     rim = record.get("rim_reconstruction", {})
     if rim:
+        depths = rim.get("depth_range_mm")
+        max_reprojection = max(
+            value for value in (
+                rim.get("maximum_view1_reprojection_error_px"),
+                rim.get("maximum_view2_reprojection_error_px"),
+            ) if value is not None
+        ) if any(value is not None for value in (
+            rim.get("maximum_view1_reprojection_error_px"),
+            rim.get("maximum_view2_reprojection_error_px"),
+        )) else None
         metric_row([
-            ("Perimeter points", str(rim.get("landmark_count", "not recorded"))),
-            ("Median parallax", f"{float(rim['median_rim_parallax_degrees']):.3f}°" if rim.get("median_rim_parallax_degrees") is not None else "not recorded"),
-            ("Depth range", f"{rim.get('depth_range_mm', 'not recorded')} mm"),
+            ("Rim points", str(rim.get("landmark_count", "not recorded"))),
+            ("Median parallax", f"{float(rim['median_rim_parallax_degrees']):.2f}°" if rim.get("median_rim_parallax_degrees") is not None else "not recorded"),
+            ("Depth range", f"{float(depths[0]):.3f} to {float(depths[1]):.3f} mm" if isinstance(depths, list) and len(depths) == 2 else "not recorded"),
+            ("Max reprojection", f"{float(max_reprojection):.3f} px" if max_reprojection is not None else "not recorded"),
         ])
-        render_public_json(rim)
+        diagnostic_table([
+            ("All points positive depth", rim.get("all_positive_depth")),
+            ("Planarity RMS", rim.get("planarity_rms_mm")),
+            ("Maximum planarity deviation", rim.get("planarity_max_mm")),
+            ("Configured planarity limit", rim.get("configured_planarity_limit_mm")),
+            ("Circle fit", rim.get("circle_fit")),
+        ])
+        render_public_json(rim, caption="Technical circle diagnostic record")
     st.error(
         "No accepted stereo diameter is displayed. The marked yellow-lid experiment was rejected "
         "because its 3D rim failed the existing planarity gate; the unmarked pair lacks verified "
@@ -198,6 +228,13 @@ def _render_polygon(record: dict[str, Any]) -> None:
     else:
         st.info("No polygon edge dimensions are available for this record.")
     if triangle:
+        diagnostic_table([
+            ("All vertices positive depth", triangle.get("all_positive_depth")),
+            ("Median vertex parallax", triangle.get("median_vertex_parallax_degrees")),
+            ("Maximum view 1 reprojection", triangle.get("maximum_reprojection_error_view1_px")),
+            ("Maximum view 2 reprojection", triangle.get("maximum_reprojection_error_view2_px")),
+            ("Planarity RMS", triangle.get("planarity_rms_mm")),
+        ])
         render_public_json(
             {key: value for key, value in triangle.items() if key not in {"vertices_3d_mm"}},
             caption="Applicable polygon geometry diagnostics",
