@@ -220,11 +220,12 @@ def render_metadata(record: dict[str, Any]) -> None:
     else:
         calibration_label = _clean_public_text(str(calibration_id))
     metric_row([
-        ("Calibration source", calibration_label),
+        ("Calibration source", "M2 -> M7" if "module2-originals-module7" in str(calibration_id) else "Saved calibration"),
         ("Metric baseline", _format_metric_value("baseline_mm", baseline)),
-        ("Checkerboard", f"{pattern[0]} x {pattern[1]} corners; {float(square):.1f} mm squares" if isinstance(pattern, (list, tuple)) and len(pattern) == 2 and square is not None else "not recorded"),
+        ("Checkerboard", f"{pattern[0]} x {pattern[1]}; {float(square):.1f} mm" if isinstance(pattern, (list, tuple)) and len(pattern) == 2 and square is not None else "not recorded"),
     ])
     rows: list[dict[str, Any]] = []
+    rows.append({"Metric": "Calibration source", "Value": calibration_label})
     if pnp_rms:
         if isinstance(pnp_rms, dict):
             for label, key in (("PnP RMS view 1", "view1"), ("PnP RMS view 2", "view2")):
@@ -260,7 +261,7 @@ def _format_metric_value(key: str, value: Any) -> str:
             return f"{float(value):.3f} px"
         return f"{float(value):.3f}"
     if isinstance(value, list) and all(isinstance(item, (int, float)) for item in value):
-        if len(value) == 2 and "interval" in key.lower():
+        if len(value) == 2 and ("interval" in key.lower() or "range" in key.lower()):
             suffix = " mm" if "mm" in key.lower() else ""
             return f"{float(value[0]):.3f} to {float(value[1]):.3f}{suffix}"
         suffix = " mm" if "mm" in key.lower() else ""
@@ -304,30 +305,192 @@ def render_3d_table(points: Any, depths: Any = None, labels: list[str] | None = 
         if not isinstance(point, list) or len(point) < 3:
             continue
         row = {"Landmark": labels[index] if labels and index < len(labels) else f"p{index}"}
-        row.update({"X (mm)": point[0], "Y (mm)": point[1], "Z / depth (mm)": point[2]})
+        row.update({
+            "X (mm)": f"{float(point[0]):.3f}",
+            "Y (mm)": f"{float(point[1]):.3f}",
+            "Z / depth (mm)": f"{float(point[2]):.3f}",
+        })
         if isinstance(depths, list) and index < len(depths):
-            row["Depth record (mm)"] = depths[index]
+            row["Depth record (mm)"] = f"{float(depths[index]):.3f}"
         rows.append(row)
     if rows:
         st.dataframe(rows, hide_index=True, width="stretch")
+
+
+def rectangle_geometry_state(record: dict[str, Any]) -> tuple[str, bool, str]:
+    """Classify rectangle values without changing the saved experiment status."""
+    gate = record.get("rectangle_quality_gate")
+    if isinstance(gate, dict) and gate.get("accepted") is False:
+        return (
+            "Diagnostic reconstruction only",
+            False,
+            "The rectangle quality gate rejected the geometry; displayed lengths are not accepted measurements.",
+        )
+    quality = record.get("rectangle_quality")
+    if isinstance(quality, dict) and quality.get("all_existing_shape_gates_passed") is True:
+        return (
+            "Geometry accepted",
+            True,
+            "The saved rectangle geometry gates passed; independent physical accuracy is reported separately.",
+        )
+    point_quality = record.get("quality")
+    if isinstance(point_quality, dict) and point_quality.get("all_points_valid") is True:
+        return (
+            "Geometry accepted",
+            True,
+            "Finite triangulation, positive depth, parallax, and reprojection checks passed for this segment.",
+        )
+    diagnostics = record.get("diagnostics")
+    if isinstance(diagnostics, dict):
+        return (
+            "Computed geometry; shape-level gate not recorded",
+            False,
+            "Point-level diagnostics are preserved, but this saved record does not mark a rectangle shape-level result as accepted.",
+        )
+    return ("Geometry not accepted", False, "No accepted rectangle geometry is recorded for this example.")
+
+
+def _physical_reference(value: Any, interval: Any = None, uncertainty: Any = None) -> str:
+    if value is None:
+        return "Not recorded"
+    text = f"{float(value):.2f} mm"
+    if uncertainty is not None:
+        text += f" +/- {float(uncertainty):.2f} mm"
+    if isinstance(interval, list) and len(interval) == 2:
+        text += f" ({float(interval[0]):.2f}-{float(interval[1]):.2f} mm)"
+    return text
+
+
+def _rectangle_comparison_rows(record: dict[str, Any]) -> list[dict[str, str]]:
+    _, geometry_accepted, _ = rectangle_geometry_state(record)
+    ground_truth = record.get("ground_truth") or record.get("physical_measurements") or {}
+    comparison = record.get("comparison") or {}
+    rows: list[dict[str, str]] = []
+
+    if "actual_length_mm" in ground_truth:
+        reconstruction = record.get("reconstruction", {})
+        rows.append({
+            "Dimension": "Flashcard width",
+            "Physical reference": _physical_reference(
+                ground_truth.get("actual_length_mm"),
+                ground_truth.get("reference_interval_mm"),
+                ground_truth.get("uncertainty_mm"),
+            ),
+            "Stereo result": f"{float(reconstruction.get('euclidean_segment_length_mm')):.3f} mm" if geometry_accepted and reconstruction.get("euclidean_segment_length_mm") is not None else "Not accepted",
+            "Absolute error": f"{float(comparison.get('absolute_error_mm')):.3f} mm" if geometry_accepted and comparison.get("absolute_error_mm") is not None else "Not reported",
+            "% error": _format_metric_value("percentage_error", comparison.get("percentage_error")) if geometry_accepted else "Not reported",
+            "Interval": "Inside" if comparison.get("within_reference_interval") is True else "Outside" if comparison else "Not assessed",
+            "Interpretation": "Validated under stated assumption" if geometry_accepted and comparison.get("within_reference_interval") is True else "Physical validation not established",
+        })
+        return rows
+
+    physical = ground_truth
+    if not isinstance(comparison, dict):
+        return rows
+
+    entries: list[tuple[str, dict[str, Any], str, Any, Any, Any]] = []
+    if "long_side" in comparison:
+        entries = [
+            ("Long side", comparison["long_side"], "long_side_mean_mm", physical.get("reference_intervals_mm", {}).get("long_side"), physical.get("provisional_uncertainty_mm")),
+            ("Short side", comparison.get("short_side", {}), "short_side_mean_mm", physical.get("reference_intervals_mm", {}).get("short_side"), physical.get("provisional_uncertainty_mm")),
+        ]
+    elif "reconstructed_image_order_side_edge_vs_physical_long_dimension" in comparison:
+        entries = [
+            ("Long side", comparison["reconstructed_image_order_side_edge_vs_physical_long_dimension"], "reported_width_mean_mm", physical.get("reference_intervals_mm", {}).get("width"), physical.get("uncertainty_mm")),
+            ("Short side", comparison["reconstructed_image_order_top_edge_vs_physical_short_dimension"], "reported_height_mean_mm", physical.get("reference_intervals_mm", {}).get("height"), physical.get("uncertainty_mm")),
+        ]
+    else:
+        diagnostic = comparison.get("ungated_diagnostic_only", {})
+        for key, entry in diagnostic.items():
+            if not isinstance(entry, dict):
+                continue
+            label = "Long side" if "long_side" in key or "long_side" in key else "Short side"
+            if "height" in key:
+                label = "Long side"
+            elif "width" in key:
+                label = "Short side"
+            entries.append((label, entry, "", entry.get("reference_interval_mm"), None))
+
+    for label, entry, physical_key, interval, uncertainty in entries:
+        if not isinstance(entry, dict):
+            continue
+        physical_value = entry.get("physical_mean_mm")
+        if physical_value is None and physical_key:
+            physical_value = physical.get(physical_key)
+        rows.append({
+            "Dimension": label,
+            "Physical reference": _physical_reference(physical_value, interval, uncertainty),
+            "Stereo result": (
+                f"{float(entry.get('reconstructed_mm')):.3f} mm" if entry.get("reconstructed_mm") is not None else "Not produced"
+            ) + (" (diagnostic)" if not geometry_accepted else ""),
+            "Absolute error": f"{float(entry.get('absolute_error_mm')):.3f} mm" if entry.get("absolute_error_mm") is not None else "Not reported",
+            "% error": _format_metric_value("percentage_error", entry.get("percentage_error")),
+            "Interval": "Inside" if entry.get("inside_reference_interval") is True else "Outside" if entry.get("inside_reference_interval") is False else "Not assessed",
+            "Interpretation": "Accepted geometry; physical accuracy not validated" if geometry_accepted else "Diagnostic only; geometry not accepted",
+        })
+    return rows
+
+
+def _circle_reference_rows(record: dict[str, Any]) -> list[dict[str, str]]:
+    physical = record.get("physical_measurement") or {}
+    if not physical:
+        return [{
+            "Metric": "Physical diameter",
+            "Value": "Not recorded",
+            "Interpretation": "Pending independent physical measurement and perimeter correspondence",
+        }]
+    return [
+        {"Metric": "Physical diameter", "Value": _physical_reference(physical.get("mean_diameter_mm"), physical.get("reference_interval_mm"), physical.get("uncertainty_mm")), "Interpretation": "Documented physical reference"},
+        {"Metric": "Stereo diameter", "Value": "Not accepted", "Interpretation": "Circle geometry rejected by the 3D planarity gate"},
+        {"Metric": "Validation outcome", "Value": "Not validated", "Interpretation": "No accepted stereo diameter was produced"},
+    ]
+
+
+def _polygon_comparison_rows(record: dict[str, Any]) -> list[dict[str, str]]:
+    rows = []
+    physical = record.get("physical_measurements", {})
+    for entry in record.get("comparisons", []):
+        if not isinstance(entry, dict):
+            continue
+        rows.append({
+            "Dimension": entry.get("edge_id", "edge"),
+            "Physical reference": _physical_reference(entry.get("physical_mean_mm"), entry.get("reference_interval_mm"), entry.get("uncertainty_mm", physical.get("uncertainty_mm"))),
+            "Stereo result": f"{float(entry.get('reconstructed_length_mm')):.3f} mm" if entry.get("reconstructed_length_mm") is not None else "Not produced",
+            "Absolute error": f"{float(entry.get('absolute_error_mm')):.3f} mm" if entry.get("absolute_error_mm") is not None else "Not reported",
+            "% error": _format_metric_value("percentage_error", entry.get("percentage_error")),
+            "Interval": "Inside" if entry.get("within_reference_interval") is True else "Outside" if entry.get("within_reference_interval") is False else "Not assessed",
+            "Interpretation": "Physical accuracy not validated",
+        })
+    return rows
 
 
 def render_physical_comparison(record: dict[str, Any], shape: str) -> None:
     section("Independent physical reference and comparison")
     ground_truth = record.get("ground_truth") or record.get("physical_measurements") or record.get("physical_measurement")
     comparison = record.get("comparison") or record.get("comparisons")
-    if ground_truth is None:
+    if shape == "rectangle":
+        rows = _rectangle_comparison_rows(record)
+        if rows:
+            st.table(rows)
+        else:
+            st.warning("PENDING - no independent physical comparison is recorded for this rectangle.")
+    elif shape == "circle":
+        st.table(_circle_reference_rows(record))
+    elif shape == "polygon":
+        rows = _polygon_comparison_rows(record)
+        if rows:
+            st.table(rows)
+        else:
+            st.warning("PENDING - no independent physical comparison is recorded for this polygon.")
+    elif ground_truth is None:
         st.warning("PENDING - no independent physical reference is recorded for this evidence set.")
     else:
         st.table(_flatten_metrics(_public_value(ground_truth), "Physical reference"))
-    if comparison is None:
-        st.info("No accepted physical comparison is available for this record.")
-    else:
-        st.caption(f"{shape.title()} comparison record")
-        rows = _flatten_metrics(_public_value(comparison), "Comparison")
-        if rows:
-            st.table(rows)
-        render_public_json(comparison, caption="Technical comparison record")
+    if ground_truth is not None or comparison is not None:
+        render_public_json(
+            {"physical_reference": ground_truth, "comparison": comparison},
+            caption="Full physical comparison record",
+        )
 
 
 def render_limitations(record: dict[str, Any]) -> None:

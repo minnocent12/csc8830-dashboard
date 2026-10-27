@@ -22,6 +22,7 @@ from module7.webapp.ui import (
     render_physical_comparison,
     render_public_json,
     render_status,
+    rectangle_geometry_state,
     diagnostic_table,
     section,
 )
@@ -151,7 +152,12 @@ def _render_record(spec: EvidenceSpec) -> None:
 
 
 def _render_rectangle(record: dict[str, Any]) -> None:
+    geometry_label, geometry_accepted, geometry_explanation = rectangle_geometry_state(record)
     section("Recovered metric geometry and rectangle dimensions")
+    if geometry_accepted:
+        st.success(f"{geometry_label}: {geometry_explanation}")
+    else:
+        st.warning(f"{geometry_label}: {geometry_explanation}")
     reconstruction = record.get("reconstruction") or record.get("triangulation", {})
     points = reconstruction.get("points_3d_mm") or reconstruction.get("points_3d")
     depths = reconstruction.get("view1_depth_z_mm")
@@ -159,20 +165,22 @@ def _render_rectangle(record: dict[str, Any]) -> None:
         render_3d_table(points, depths, ["top_left", "top_right", "bottom_right", "bottom_left"])
     quality = record.get("rectangle_quality") or record.get("diagnostics", {})
     dimensions = quality.get("dimensions_mm") or quality.get("rectangle_dimensions_mm")
-    if dimensions:
-        metric_row([(str(label), f"{float(value):.3f} mm") for label, value in dimensions.items()])
+    if dimensions and geometry_accepted:
+        metric_row([(f"Accepted {label}", f"{float(value):.3f} mm") for label, value in dimensions.items()])
+    elif dimensions:
+        diagnostic_table([(f"Diagnostic {label} (mm, not accepted)", value) for label, value in dimensions.items()])
     else:
-        st.info("No accepted rectangle dimensions are available for this record.")
+        st.info("No rectangle dimensions were accepted for this record.")
     if quality:
         opposite = quality.get("opposite_edge_lengths_mm", {})
         right_angles = quality.get("right_angle_deviations_degrees")
         diagnostic_table([
             ("Geometry gates", "Passed" if quality.get("all_existing_shape_gates_passed") else "Not passed"),
-            ("Planarity RMS", quality.get("planarity_rms_mm")),
-            ("Maximum planarity deviation", quality.get("planarity_max_mm")),
-            ("Maximum right-angle deviation", max(right_angles) if right_angles else None),
-            ("Width edge lengths", opposite.get("width")),
-            ("Height edge lengths", opposite.get("height")),
+            ("Planarity RMS (mm)", quality.get("planarity_rms_mm")),
+            ("Maximum planarity deviation (mm)", quality.get("planarity_max_mm")),
+            ("Maximum right-angle deviation (degrees)", max(right_angles) if right_angles else None),
+            ("Width edge lengths (mm)", opposite.get("width")),
+            ("Height edge lengths (mm)", opposite.get("height")),
         ])
     if quality:
         render_public_json(quality, caption="Applicable rectangle geometry diagnostics")
@@ -195,14 +203,14 @@ def _render_circle(record: dict[str, Any]) -> None:
         metric_row([
             ("Rim points", str(rim.get("landmark_count", "not recorded"))),
             ("Median parallax", f"{float(rim['median_rim_parallax_degrees']):.2f}°" if rim.get("median_rim_parallax_degrees") is not None else "not recorded"),
-            ("Depth range", f"{float(depths[0]):.3f} to {float(depths[1]):.3f} mm" if isinstance(depths, list) and len(depths) == 2 else "not recorded"),
             ("Max reprojection", f"{float(max_reprojection):.3f} px" if max_reprojection is not None else "not recorded"),
         ])
         diagnostic_table([
             ("All points positive depth", rim.get("all_positive_depth")),
-            ("Planarity RMS", rim.get("planarity_rms_mm")),
-            ("Maximum planarity deviation", rim.get("planarity_max_mm")),
-            ("Configured planarity limit", rim.get("configured_planarity_limit_mm")),
+            ("Depth range (mm)", depths),
+            ("Planarity RMS (mm)", rim.get("planarity_rms_mm")),
+            ("Maximum planarity deviation (mm)", rim.get("planarity_max_mm")),
+            ("Configured planarity limit (mm)", rim.get("configured_planarity_limit_mm")),
             ("Circle fit", rim.get("circle_fit")),
         ])
         render_public_json(rim, caption="Technical circle diagnostic record")
@@ -230,10 +238,10 @@ def _render_polygon(record: dict[str, Any]) -> None:
     if triangle:
         diagnostic_table([
             ("All vertices positive depth", triangle.get("all_positive_depth")),
-            ("Median vertex parallax", triangle.get("median_vertex_parallax_degrees")),
-            ("Maximum view 1 reprojection", triangle.get("maximum_reprojection_error_view1_px")),
-            ("Maximum view 2 reprojection", triangle.get("maximum_reprojection_error_view2_px")),
-            ("Planarity RMS", triangle.get("planarity_rms_mm")),
+            ("Median vertex parallax (degrees)", triangle.get("median_vertex_parallax_degrees")),
+            ("Maximum view 1 reprojection (px)", triangle.get("maximum_reprojection_error_view1_px")),
+            ("Maximum view 2 reprojection (px)", triangle.get("maximum_reprojection_error_view2_px")),
+            ("Planarity RMS (mm)", triangle.get("planarity_rms_mm")),
         ])
         render_public_json(
             {key: value for key, value in triangle.items() if key not in {"vertices_3d_mm"}},
