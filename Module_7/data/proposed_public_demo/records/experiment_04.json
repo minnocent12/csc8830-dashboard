@@ -1,0 +1,302 @@
+{
+  "calibration": {
+    "calibration_id": "module2-originals-module7-recompute",
+    "image_size_wh": [
+      4284,
+      5712
+    ],
+    "pattern_size_internal_corners": [
+      9,
+      6
+    ],
+    "square_size": 25.0,
+    "square_unit": "mm"
+  },
+  "capture_assessment": {
+    "active_lens_metadata": "LensModel/focal-length fields are absent from these EXIF records; compatibility is based on the same phone/model and calibrated image frame, not a newly verified lens field.",
+    "board_homography_residuals_px": [
+      8.593413863110545,
+      3.874085214524738,
+      2.890286647480151,
+      1.7338987890933644,
+      3.2063072446728484,
+      4.735005555479442,
+      1.547766376882937,
+      1.8048502541098657,
+      7.804355956053042,
+      3.231549842045341,
+      4.550182286740129,
+      3.9084630667177445,
+      1.2077064045626404,
+      3.175715740227319,
+      3.9950192723179385,
+      3.114383729654135,
+      1.2562851206415562,
+      4.792131428535122,
+      2.0679521601075987,
+      4.3570087139524265,
+      5.812448244992435,
+      1.97244878376681,
+      2.4370429026114837,
+      5.267903137929889,
+      2.400851852546966,
+      1.9291296279934271,
+      3.957077527058032,
+      4.838829771757543,
+      5.6502331983074185,
+      4.773529896255542,
+      2.9281378246014316,
+      4.592142518022124,
+      5.281327247054696,
+      5.10338179532923,
+      3.0824531126246306,
+      3.445813116830198,
+      7.147271854439409,
+      4.71831531448819,
+      3.3901508830435425,
+      2.869107136488743,
+      4.925982539989804,
+      5.912851616573949,
+      3.264376014185826,
+      0.08796010979455164,
+      5.691766337472559,
+      8.121348954558307,
+      3.9645608509780677,
+      0.48985015585085906,
+      3.758366956273186,
+      5.473204875895506,
+      4.500031497633161,
+      2.2869394664378033,
+      2.677226535962927,
+      4.622369720671777
+    ],
+    "camera_model": "Apple iPhone 15 Pro Max in both files",
+    "card_corners_visible": true,
+    "card_homography_residuals_px": [
+      40.485820110962955,
+      33.204145576257616,
+      14.937121400717032,
+      46.804969862374826
+    ],
+    "checkerboard_detected": true,
+    "resolution_compatible": true,
+    "scene_consistency_review": {
+      "board_homography_residual_max_px": 8.593413863110545,
+      "board_homography_residual_median_px": 3.891274140621241,
+      "board_homography_to_card_screen": "FAILED AS A COPLANAR-SURFACE SCREEN",
+      "card_homography_pose_review": "The earlier 12.345324-degree value came from decomposing a homography fitted to raw distorted pixel coordinates. A distortion-aware reanalysis undistorted the four points before fitting and found a closest decomposition rotation difference of 12.959758 degrees. Because only four card corners define the homography and the card-plane geometry is otherwise unknown, this is an unresolved pose/model warning rather than an independent camera-pose estimate or proof of object movement.",
+      "card_residual_range_px": [
+        14.937121400717032,
+        46.804969862374826
+      ],
+      "checkerboard_relative_pose_rank_one_residual": 0.16046592786546504,
+      "coplanarity_caveat": "A homography fitted to the checkerboard cannot be expected to map a separate non-coplanar card, even when both objects are stationary.",
+      "decision": "SCENE CONSISTENCY NOT ESTABLISHED",
+      "distortion_aware_closest_rotation_difference_degrees": 12.959757952530136,
+      "endpoint_sensitivity_diagnostic": "A non-experimental simulation adding independent Gaussian perturbations to the existing four image points gave distortion-aware closest-rotation 5th/50th/95th percentiles of 10.55/13.11/15.68 degrees for 1 px perturbations. This does not establish the actual endpoint uncertainty and does not change the saved points.",
+      "reported_raw_pixel_closest_rotation_difference_degrees": 12.34532428791234
+    },
+    "stationarity_decision": "NOT ESTABLISHED: the board-to-card homography residual screen is only decisive if the board and card are coplanar; the raw-pixel card-homography review reported 12.345324 degrees and the distortion-aware review reported 12.959758 degrees relative to the checkerboard-PnP rotation. The pair therefore does not provide sufficient evidence to claim a stationary common scene.",
+    "visual_quality": "Both images are sharp enough for checkerboard/card review; Laplacian variance is recorded as a comparative diagnostic only."
+  },
+  "checkerboard_pnp": {
+    "baseline_mm": 166.38702484139964,
+    "method": "checkerboard_pnp",
+    "relative_translation_metric_mm": [
+      -34.01168110724478,
+      -160.7035457127709,
+      -26.499395826602893
+    ],
+    "views": [
+      {
+        "corner_count": 54,
+        "pnp_rms_reprojection_error_px": 1.1083876992099475,
+        "translation_board_to_camera_mm": [
+          -10.232363146953677,
+          108.08614346721708,
+          444.4840051401786
+        ]
+      },
+      {
+        "corner_count": 54,
+        "pnp_rms_reprojection_error_px": 2.2164647496774377,
+        "translation_board_to_camera_mm": [
+          -37.35885413943926,
+          -61.95679360412746,
+          420.25693806395094
+        ]
+      }
+    ]
+  },
+  "comparison": {
+    "long_side": {
+      "absolute_error_mm": 5.573059697537786,
+      "distance_outside_interval_mm": 4.573059697537786,
+      "inside_reference_interval": false,
+      "percentage_error": 6.376498509768634,
+      "physical_mean_mm": 87.4,
+      "reconstructed_mm": 92.97305969753779,
+      "reference_interval_mm": [
+        86.4,
+        88.4
+      ],
+      "signed_error_mm": 5.573059697537786
+    },
+    "short_side": {
+      "absolute_error_mm": 2.93689931683695,
+      "distance_outside_interval_mm": 1.93689931683695,
+      "inside_reference_interval": false,
+      "percentage_error": 5.9451403174837045,
+      "physical_mean_mm": 49.4,
+      "reconstructed_mm": 52.33689931683695,
+      "reference_interval_mm": [
+        48.4,
+        50.4
+      ],
+      "signed_error_mm": 2.93689931683695
+    }
+  },
+  "correspondences": {
+    "ids": [
+      "top_left",
+      "top_right",
+      "bottom_right",
+      "bottom_left"
+    ],
+    "selection_method": "straight outer card-edge boundary fits intersected at adjacent edges; both annotated images independently reviewed",
+    "view1_points": [
+      [
+        2398.570313,
+        4845.594238
+      ],
+      [
+        2855.14209,
+        4838.280273
+      ],
+      [
+        2833.462402,
+        5628.061523
+      ],
+      [
+        2375.201904,
+        5671.647949
+      ]
+    ],
+    "view2_points": [
+      [
+        2200.552246,
+        3314.97998
+      ],
+      [
+        2682.964355,
+        3305.275146
+      ],
+      [
+        2705.350342,
+        4177.76123
+      ],
+      [
+        2210.984619,
+        4209.526367
+      ]
+    ]
+  },
+  "decision": "The FREE ADMISSION physical measurements are supported by [original evidence file] and [original evidence file], but the stereo estimates remain outside both verified \u00b11.00 mm reference intervals and the pose/model-consistency warning remains unresolved. This experiment is documented but NOT PHYSICALLY VALIDATED. The stereo reconstruction, calibration, scale, thresholds, and coordinates were not changed.",
+  "physical_measurements": {
+    "long_side_mean_mm": 87.4,
+    "provisional_uncertainty_mm": 1.0,
+    "reference_intervals_mm": {
+      "long_side": [
+        86.4,
+        88.4
+      ],
+      "short_side": [
+        48.4,
+        50.4
+      ]
+    },
+    "repeated_readings_mm": {
+      "long_side": [
+        87.0,
+        88.0,
+        87.2
+      ],
+      "short_side": [
+        49.0,
+        49.8,
+        49.4
+      ]
+    },
+    "ruler_evidence_status": "VERIFIED FOR FREE ADMISSION CARD",
+    "short_side_mean_mm": 49.4,
+    "uncertainty_justification": "The ruler has 1 mm subdivisions; the repeated-reading ranges are 1.0 mm for the long side and 0.8 mm for the short side. Endpoint alignment and perspective support retaining a conservative \u00b11.00 mm physical uncertainty. This is not stereo-system uncertainty.",
+    "uncertainty_status": "SUPPORTED PROVISIONAL PHYSICAL UNCERTAINTY"
+  },
+  "rectangle_quality": {
+    "all_existing_shape_gates_passed": true,
+    "dimensions_mm": {
+      "height": 92.97305969753779,
+      "width": 52.33689931683695
+    },
+    "opposite_edge_lengths_mm": {
+      "height": [
+        93.40048099310627,
+        92.5456384019693
+      ],
+      "width": [
+        51.129677769408296,
+        53.544120864265594
+      ]
+    },
+    "planarity_max_mm": 1.7789327981274816,
+    "planarity_rms_mm": 1.731615881961527,
+    "right_angle_deviations_degrees": [
+      0.32115680393752655,
+      0.8707453262735783,
+      2.0548534578408066,
+      0.2969941668589797
+    ]
+  },
+  "schema_version": 1,
+  "status": "DOCUMENTED - PHYSICAL MEASUREMENT VERIFIED; STEREO ACCURACY NOT VALIDATED",
+  "triangulation": {
+    "median_parallax_degrees": 17.073945887890922,
+    "points_3d_mm": [
+      [
+        34.30086957487579,
+        220.53987531823444,
+        443.93180004749274
+      ],
+      [
+        85.35480179778205,
+        221.61842948661976,
+        446.49630278453134
+      ],
+      [
+        84.66253448282534,
+        314.97382098311,
+        449.31436847668385
+      ],
+      [
+        32.04692315426489,
+        312.95628092397214,
+        439.5932648480459
+      ]
+    ],
+    "positive_depth_and_point_reprojection_gate": "passed for 4/4",
+    "reprojection_error_view1_px": [
+      1.1319129198923674,
+      0.5719700921487925,
+      0.8952061212432797,
+      0.10389393644428722
+    ],
+    "reprojection_error_view2_px": [
+      1.191407008825697,
+      0.6015661997789807,
+      0.9371858651567705,
+      0.10894530897261256
+    ],
+    "total_landmarks": 4,
+    "valid_landmarks": 4
+  }
+}

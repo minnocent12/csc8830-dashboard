@@ -1,0 +1,35 @@
+{
+  "calibration": {
+    "calibration_id": "module2-originals-module7-recompute",
+    "corner_count_each_view": 54,
+    "lens_compatibility": "Same recorded iPhone 15 Pro Max model and calibrated image frame; active LensModel/FocalLength are absent from these EXIF records.",
+    "pattern_size_internal_corners": [
+      9,
+      6
+    ],
+    "square_size_mm": 25.0
+  },
+  "checkerboard_pnp": {
+    "baseline_mm": 109.6506185651,
+    "checkerboard_median_triangulation_parallax_degrees": 15.1087842282,
+    "checkerboard_positive_depth_and_reprojection_gate": "passed for 54/54 points",
+    "checkerboard_valid_points": "54/54",
+    "metric_scale_source": "checkerboard_solvePnP",
+    "pnp_rms_view1_px": 1.609630393,
+    "pnp_rms_view2_px": 2.5527489938
+  },
+  "decision": "VALID STEREO PAIR FOR CHECKERBOARD POSE ONLY; CIRCLE DIAMETER VALIDATION BLOCKED BY UNVERIFIED PERIMETER CORRESPONDENCES AND PENDING LID MEASUREMENT UNCERTAINTY",
+  "minimum_justified_improvement": "Repeat the two-view capture with 8-16 small removable markers placed just inside the lid perimeter, or use a circular object with distinctive perimeter landmarks. Measure the same outer diameter at least three times, record ruler resolution and uncertainty, and photograph the zero mark and both endpoints. Do not use the nominal 100 mm value to scale the reconstruction.",
+  "prior_evidence_separation": "[original evidence file] files concern the earlier flashcard box and are not evidence for the yellow lid.",
+  "scene_review": {
+    "checkerboard_and_lid_visible_in_both_views": true,
+    "circle_fit": "NOT RUN",
+    "lid_outer_rim": "The outermost circular rim is visible in both derived views; a second concentric rim is also visible.",
+    "lid_parallax_status": "NOT MEASURED - no verified lid point correspondences",
+    "lid_perimeter_landmarks": "The smooth yellow rim has no reliable unique physical features supporting 8-16 repeatable point identities across views.",
+    "physical_diameter_comparison": "PENDING - user supplied approximately 100 mm, but no final uncertainty or lid-specific ruler evidence was located in the Module 7 workspace.",
+    "visual_stationarity_assessment": "No obvious displacement of either object relative to the support is visible, but stationarity is not independently proven without identifiable lid correspondences."
+  },
+  "schema_version": 1,
+  "status": "CHECKERBOARD POSE VALIDATED; CIRCLE CORRESPONDENCES PENDING"
+}

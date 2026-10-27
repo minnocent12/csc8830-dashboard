@@ -1,0 +1,459 @@
+{
+  "approval_note": "User approved the reviewed 21 image derivatives and seven compact records for repository inclusion; no publication or deployment has been performed.",
+  "asset_count": 29,
+  "assets": [
+    {
+      "content_review": "Path-free academic record; no visual personal content.",
+      "display_transform": "Compact JSON selection only; no scientific coordinates changed.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "No visual privacy issue; user approval still required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "records/experiment_01.json",
+      "role": "compact_evidence_record",
+      "sha256": "ebb90b82dccf392575f6de7e4bbba4c4035da057a52883d6568c548ac95a233b",
+      "size_bytes": 8428,
+      "source_label": "Flashcard - validated under equivalent-edge assumption"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 960,
+        "width_px": 1280
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_01_view1.jpg",
+      "role": "stereo_view_display",
+      "sha256": "fad15cf1f8d3a34e1b79f63027d84e5cbb7a6cb2174a726e07a0da325d480906",
+      "size_bytes": 135524,
+      "source_label": "Flashcard - validated under equivalent-edge assumption"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 960,
+        "width_px": 1280
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_01_view2.jpg",
+      "role": "stereo_view_display",
+      "sha256": "21a2385e4098b352a2c47d19e6345d89a5aff3f92adfe978106fc1b8eb457471",
+      "size_bytes": 136436,
+      "source_label": "Flashcard - validated under equivalent-edge assumption"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 1067,
+        "width_px": 1600
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_01_diagnostic.jpg",
+      "role": "annotated_diagnostic_display",
+      "sha256": "53a5e9a6a6ead449df43cc10b83e616c1dc0ddd97df40e7d0c3d84669bb57210",
+      "size_bytes": 225140,
+      "source_label": "Flashcard - validated under equivalent-edge assumption"
+    },
+    {
+      "content_review": "Path-free academic record; no visual personal content.",
+      "display_transform": "Compact JSON selection only; no scientific coordinates changed.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "No visual privacy issue; user approval still required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "records/experiment_02.json",
+      "role": "compact_evidence_record",
+      "sha256": "67850763a857c292b1974ecd52e7c7072cbd06d91c3273a213955345d0116ac8",
+      "size_bytes": 6533,
+      "source_label": "FREE ADMISSION - first experiment"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 960,
+        "width_px": 1280
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_02_view1.jpg",
+      "role": "stereo_view_display",
+      "sha256": "609d1d815bd357c557d5b0652ff721945fd56d236a69cbfb1b29b276371707f6",
+      "size_bytes": 83584,
+      "source_label": "FREE ADMISSION - first experiment"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 1280,
+        "width_px": 960
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_02_view2.jpg",
+      "role": "stereo_view_display",
+      "sha256": "3ec4d8b88b0ee7fefacf6db3c74912fcc42f238d6282cdcf9f1d3f2a86f4b3f3",
+      "size_bytes": 82450,
+      "source_label": "FREE ADMISSION - first experiment"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 1067,
+        "width_px": 1600
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_02_diagnostic.jpg",
+      "role": "annotated_diagnostic_display",
+      "sha256": "e7f3b4c0e32f93a196576742f3b8bb0324e3d964f8fb4f92e8f14669dd3cef76",
+      "size_bytes": 119878,
+      "source_label": "FREE ADMISSION - first experiment"
+    },
+    {
+      "content_review": "Path-free academic record; no visual personal content.",
+      "display_transform": "Compact JSON selection only; no scientific coordinates changed.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "No visual privacy issue; user approval still required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "records/experiment_03.json",
+      "role": "compact_evidence_record",
+      "sha256": "82d2455066d19d006510967dbf7ba9e940bb6c957be171d7ae7af1f239f9e723",
+      "size_bytes": 6877,
+      "source_label": "FREE ADMISSION - second experiment"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 960,
+        "width_px": 1280
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_03_view1.jpg",
+      "role": "stereo_view_display",
+      "sha256": "4ac70a9c97de787c0286568d56a47c619b72ed9e80829b57b5a5cf428c9280eb",
+      "size_bytes": 87579,
+      "source_label": "FREE ADMISSION - second experiment"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 960,
+        "width_px": 1280
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_03_view2.jpg",
+      "role": "stereo_view_display",
+      "sha256": "22f0ebb1d6f7cbcb33a9fb058142428e17703f72c278b6c02aa20777febfa257",
+      "size_bytes": 83522,
+      "source_label": "FREE ADMISSION - second experiment"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 1067,
+        "width_px": 1600
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_03_diagnostic.jpg",
+      "role": "annotated_diagnostic_display",
+      "sha256": "3d57559d1107d86e6c0144b2896cef3bd43013a3b4dbac72399d80ca823fb9a0",
+      "size_bytes": 122309,
+      "source_label": "FREE ADMISSION - second experiment"
+    },
+    {
+      "content_review": "Path-free academic record; no visual personal content.",
+      "display_transform": "Compact JSON selection only; no scientific coordinates changed.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "No visual privacy issue; user approval still required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "records/experiment_04.json",
+      "role": "compact_evidence_record",
+      "sha256": "ef317a61167e42e7d66201f4bd26810a47f27aaa4211043657cbbfd51e038056",
+      "size_bytes": 9785,
+      "source_label": "FREE ADMISSION - third experiment"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 1280,
+        "width_px": 960
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_04_view1.jpg",
+      "role": "stereo_view_display",
+      "sha256": "ba5fbec05051e3e2aff2f0650c6ed7d75337f819a56bf2dd785c65161e9b4e7f",
+      "size_bytes": 88304,
+      "source_label": "FREE ADMISSION - third experiment"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 1280,
+        "width_px": 960
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_04_view2.jpg",
+      "role": "stereo_view_display",
+      "sha256": "a4bd2bfc0adf3b31ba280ba514650858ab0541ac0695cb712010b84477ee11fd",
+      "size_bytes": 92477,
+      "source_label": "FREE ADMISSION - third experiment"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 1067,
+        "width_px": 1600
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Rectangle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_04_diagnostic.jpg",
+      "role": "annotated_diagnostic_display",
+      "sha256": "e8671ab3cbc4bf58632f6ba9b327bd05b25499176ef0f705129bf26032430e3c",
+      "size_bytes": 133414,
+      "source_label": "FREE ADMISSION - third experiment"
+    },
+    {
+      "content_review": "Path-free academic record; no visual personal content.",
+      "display_transform": "Compact JSON selection only; no scientific coordinates changed.",
+      "essential_for_demonstration": true,
+      "page": "Circle measurements",
+      "privacy_status": "No visual privacy issue; user approval still required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "records/experiment_05.json",
+      "role": "compact_evidence_record",
+      "sha256": "b9edc1837406f80cf9196ccc5e0b18d54c39ccc32d0eb321a6594d17192df599",
+      "size_bytes": 3925,
+      "source_label": "Yellow lid - marked perimeter experiment"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 960,
+        "width_px": 1280
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Circle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_05_view1.jpg",
+      "role": "stereo_view_display",
+      "sha256": "735cb29c68785165f5106a2c79d29593742d3412b9eb2af2842585b0394bceec",
+      "size_bytes": 87673,
+      "source_label": "Yellow lid - marked perimeter experiment"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 960,
+        "width_px": 1280
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Circle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_05_view2.jpg",
+      "role": "stereo_view_display",
+      "sha256": "c6f77776354d91f3b10fdfb8686c3abff0eaf470f8b71eb34e5307aee1983c2e",
+      "size_bytes": 83492,
+      "source_label": "Yellow lid - marked perimeter experiment"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 1067,
+        "width_px": 1600
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Circle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_05_diagnostic.jpg",
+      "role": "annotated_diagnostic_display",
+      "sha256": "0bc2350367b6472a1e0c9167ca4d5a28b1d6df9a5d65a11e042cfa8ca29bfa42",
+      "size_bytes": 144636,
+      "source_label": "Yellow lid - marked perimeter experiment"
+    },
+    {
+      "content_review": "Path-free academic record; no visual personal content.",
+      "display_transform": "Compact JSON selection only; no scientific coordinates changed.",
+      "essential_for_demonstration": true,
+      "page": "Circle measurements",
+      "privacy_status": "No visual privacy issue; user approval still required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "records/experiment_06.json",
+      "role": "compact_evidence_record",
+      "sha256": "7574b4da23972680b1e4388a658b83d5a0a6adde172b9ee4adc920bc3dfcf7e4",
+      "size_bytes": 2445,
+      "source_label": "Yellow lid - unmarked pair pending perimeter correspondence"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 960,
+        "width_px": 1280
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Circle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_06_view1.jpg",
+      "role": "stereo_view_display",
+      "sha256": "538cde25c0724b2fe50b03321b195106d89f2900765198024c4c7d033318073c",
+      "size_bytes": 86459,
+      "source_label": "Yellow lid - unmarked pair pending perimeter correspondence"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 960,
+        "width_px": 1280
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Circle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_06_view2.jpg",
+      "role": "stereo_view_display",
+      "sha256": "81b136e07cc87f5a420cc7816a74a3085f1b7cd73edb8303d0a626b3dff45a56",
+      "size_bytes": 83426,
+      "source_label": "Yellow lid - unmarked pair pending perimeter correspondence"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 1067,
+        "width_px": 1600
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Circle measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_06_diagnostic.jpg",
+      "role": "annotated_diagnostic_display",
+      "sha256": "0dad94f7aa15685e37bfe427c8c8f1047b2bbb406b83b88900a080d39cdb9c79",
+      "size_bytes": 153662,
+      "source_label": "Yellow lid - unmarked pair pending perimeter correspondence"
+    },
+    {
+      "content_review": "Path-free academic record; no visual personal content.",
+      "display_transform": "Compact JSON selection only; no scientific coordinates changed.",
+      "essential_for_demonstration": true,
+      "page": "Polygon measurements",
+      "privacy_status": "No visual privacy issue; user approval still required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "records/experiment_07.json",
+      "role": "compact_evidence_record",
+      "sha256": "a24e7e5bfb6f8360e04356a40630df0c57ef7199c26b8112dd9b17a29a46d137",
+      "size_bytes": 9325,
+      "source_label": "Cardboard triangle - three visible edges"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 1280,
+        "width_px": 960
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Polygon measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_07_view1.jpg",
+      "role": "stereo_view_display",
+      "sha256": "88acdad860f70c7b74ddf116c399549a2c1d76b66202c3dbcdd7bdbe3a786faf",
+      "size_bytes": 84435,
+      "source_label": "Cardboard triangle - three visible edges"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 1280,
+        "width_px": 960
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Polygon measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_07_view2.jpg",
+      "role": "stereo_view_display",
+      "sha256": "e3660debcb06f054b8eac88cc44711a3fe2855f79f1b519d363f87cc12aff9ab",
+      "size_bytes": 83749,
+      "source_label": "Cardboard triangle - three visible edges"
+    },
+    {
+      "content_review": "Real experiment image showing the checkerboard and validation object; surrounding workspace/background remains visible. No face or explicit personal identifier was observed in the local visual review.",
+      "dimensions": {
+        "height_px": 600,
+        "width_px": 1600
+      },
+      "display_transform": "Resized for preview only; no crop or coordinate remapping applied.",
+      "essential_for_demonstration": true,
+      "page": "Polygon measurements",
+      "privacy_status": "Potential private workspace background; owner review required.",
+      "publication_recommendation": "USER REVIEW REQUIRED - proposed candidate only",
+      "relative_path": "images/experiment_07_diagnostic.jpg",
+      "role": "annotated_diagnostic_display",
+      "sha256": "30c1b78a2c1d2ce6ca890317a0115ff894e8ca5ebc1bd269dbeec12906f60ebe",
+      "size_bytes": 76507,
+      "source_label": "Cardboard triangle - three visible edges"
+    }
+  ],
+  "bundle_version": "0.1.0-proposed",
+  "publication_approved": true,
+  "purpose": "Compact local preview for academic review of Question 1 evidence.",
+  "review_status": "USER APPROVED FOR REPOSITORY INCLUSION",
+  "total_size_bytes": 2347455
+}

@@ -1,0 +1,94 @@
+{
+  "calibration": {
+    "active_lens_note": "Exact LensModel/FocalLength fields are absent; compatibility is based on the same iPhone model and calibrated frame.",
+    "calibration_id": "module2-originals-module7-recompute",
+    "corner_count": {
+      "view1": 54,
+      "view2": 54
+    },
+    "pattern_size_internal_corners": [
+      9,
+      6
+    ],
+    "square_size_mm": 25.0
+  },
+  "checkerboard_pnp": {
+    "baseline_mm": 29.03885003596,
+    "checkerboard_median_parallax_degrees": 4.4652247597,
+    "checkerboard_valid_points": "54/54",
+    "pnp_rms_px": {
+      "view1": 1.9379960429,
+      "view2": 2.5372121212
+    }
+  },
+  "decision": "MARKED STEREO PAIR PROCESSED; CHECKERBOARD AND POINT-LEVEL STEREO GATES PASS, BUT CIRCLE VALIDATION IS NOT ACCEPTED BECAUSE THE RECOVERED RIM EXCEEDS THE EXISTING 3D PLANARITY QUALITY LIMIT.",
+  "limitations": [
+    "The 29.038850 mm baseline and 4.168084 degree rim parallax are much weaker than the earlier unmarked pair.",
+    "Rim points are inferred from marker-defined rays and visible outer-edge intersections; marker centers are not treated as the rim.",
+    "No independent physical diameter uncertainty has been finalized, so no physical accuracy comparison or validation pass is claimed."
+  ],
+  "marker_correspondences": {
+    "annotated_outer_edge_images": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "count": 14,
+    "identity_review": "All 14 marker positions are visible and ordered consistently in both views. Three first-pass edge picks were corrected after inspection of the actual outer-rim boundary; no scale or pose was changed.",
+    "marker_centers_are_measurement_points": false,
+    "ordering": "lid_rim_00 through lid_rim_13, clockwise from the upper marker",
+    "rim_point_definition": "Each point is the outermost circular-rim intersection on the marker-defined ray from the fitted projected lid center; marker centers were used only to establish physical identity."
+  },
+  "physical_measurement": {
+    "accepted_reading_directions": [
+      "horizontal",
+      "vertical"
+    ],
+    "accepted_reading_sources": [
+      null,
+      null
+    ],
+    "accepted_readings_mm": [
+      100.0,
+      100.0
+    ],
+    "diagonal_evidence": {
+      "original_evidence_file": "qualitative corroboration only; no independent numeric reading accepted",
+      "original_evidence_file_2": "indeterminate; not used quantitatively"
+    },
+    "lid_specific_ruler_photos_found_in_module7_workspace": true,
+    "mean_diameter_mm": 100.0,
+    "outer_boundary_review": "Accepted readings refer to the outermost lid rim, not the inner recessed ring.",
+    "physical_comparison_performed": false,
+    "reference_interval_mm": [
+      98.0,
+      102.0
+    ],
+    "status": "PHYSICAL DIAMETER GROUND TRUTH DOCUMENTED PROVISIONALLY - 100.0 \u00b1 2.0 mm",
+    "stereo_status_unchanged": "REJECTED - 3D PLANARITY QUALITY GATE",
+    "uncertainty_mm": 2.0,
+    "used_for_scaling_or_optimization": false,
+    "user_reported_nominal_diameter_mm": 100.0,
+    "zero_mark_review": "The ruler zero mark is not visible in the accepted spans; visible metric scale differences support only an approximate reading."
+  },
+  "rim_reconstruction": {
+    "all_positive_depth": true,
+    "all_reprojection_gate_passed": true,
+    "circle_fit": "NOT ACCEPTED - existing measure_circle quality gate rejected the boundary before a reported diameter was produced",
+    "configured_planarity_limit_mm": 2.6351753547,
+    "depth_range_mm": [
+      322.4482974185,
+      334.2738792807
+    ],
+    "landmark_count": 14,
+    "maximum_view1_reprojection_error_px": 1.9407983393,
+    "maximum_view2_reprojection_error_px": 1.9336937418,
+    "median_rim_parallax_degrees": 4.1680841164,
+    "metric_unit": "mm",
+    "planarity_max_mm": 3.8174637776,
+    "planarity_rms_mm": 2.6418140299
+  },
+  "schema_version": 1,
+  "status": "CIRCLE GEOMETRY REJECTED - 3D PLANARITY QUALITY GATE"
+}

@@ -1,7 +1,7 @@
 # CSc 8830 Computer Vision Assignments Dashboard
 
-Single web entry point that mounts the Module 2, Module 3, and Module 4 assignment apps into
-one Streamlit sidebar, so every assignment is reachable from one link.
+Single web entry point that mounts the Module 2, Module 3, Module 4, Module 5-6, and Module 7
+assignment apps into one Streamlit sidebar, so every assignment is reachable from one link.
 
 Each module remains an independently submittable, independently runnable project in its own
 repository:
@@ -9,12 +9,15 @@ repository:
 - Module 2: https://github.com/minnocent12/csc8830-module-2
 - Module 3: https://github.com/minnocent12/csc8830-module-3
 - Module 4: https://github.com/minnocent12/csc8830-module-4
+- Module 5-6: https://github.com/minnocent12/csc8830-module-5-6
+- Module 7: https://github.com/minnocent12/CSC_8830_Module_7
 
-This repository carries no independent implementation of its own. `Module_2/src`,
-`Module_3/src`, and `Module_4/src` are plain copies of each module's `src/` tree, kept only so
-a static host (Streamlit Community Cloud) can import `moduleN.webapp.pages.get_pages()`
-without needing git submodule support. The shared dashboard shell that wires the pages
-together lives in `dashboard/`.
+This repository carries no independent implementation of its own. Each `Module_N/src` tree
+is a plain copy of the corresponding module's source, and the committed `Module_7/data`
+directory contains only its approved curated demonstration bundle. These copies let a static
+host (Streamlit Community Cloud) import `moduleN.webapp.pages.get_pages()` without needing
+git submodule support. The shared dashboard shell that wires the pages together lives in
+`dashboard/`.
 
 ## Run locally
 
@@ -34,8 +37,9 @@ After pushing changes to a module's own repository, refresh its vendored copy he
 
 ```bash
 scripts/sync_module_src.sh Module_2
-git add Module_2/src
-git commit -m "Sync Module 2 source"
+scripts/sync_module_src.sh Module_7
+git add Module_7
+git commit -m "Sync Module 7 source"
 git push
 ```
 

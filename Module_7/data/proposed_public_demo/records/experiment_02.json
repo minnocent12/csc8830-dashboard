@@ -1,0 +1,212 @@
+{
+  "calibration": {
+    "calibration_id": "module2-originals-module7-recompute",
+    "image_size_wh": [
+      4284,
+      5712
+    ],
+    "pattern_size_internal_corners": [
+      9,
+      6
+    ],
+    "square_size": 25.0,
+    "square_unit": "mm"
+  },
+  "capture_assessment": {
+    "card_four_outer_boundary_corners_visible": true,
+    "checkerboard_visible_and_detected_in_both": true,
+    "resolution_compatible_after_documented_orientation_normalization": true,
+    "same_phone_lens_recorded": "Apple iPhone 15 Pro Max metadata is present in both originals; exact active-lens field is not present in these EXIF tags, while Module 2 calibration provenance identifies the existing 1x/24mm-equivalent lens.",
+    "stationarity": "The same board and card are visible in both views with consistent scene arrangement. Image evidence cannot independently prove zero object motion; this remains a capture assumption.",
+    "viewpoint_difference": "checkerboard-PnP baseline and object-point parallax are nonzero and usable."
+  },
+  "checkerboard_pnp": {
+    "baseline_mm": 44.6969976244218,
+    "pose_method": "checkerboard_pnp",
+    "relative_translation_metric": [
+      6.857745711106432,
+      6.940769567452973,
+      43.619016933109435
+    ],
+    "views": [
+      {
+        "detected_corner_count": 54,
+        "expected_corner_count": 54,
+        "pnp_rms_reprojection_error_px": 1.3915576355917594,
+        "translation_board_to_camera_mm": [
+          -49.120756574634534,
+          17.498096875883476,
+          376.11856431279165
+        ]
+      },
+      {
+        "detected_corner_count": 54,
+        "expected_corner_count": 54,
+        "pnp_rms_reprojection_error_px": 1.149880786692573,
+        "translation_board_to_camera_mm": [
+          -60.23875642243918,
+          21.815320926364162,
+          417.0638102624208
+        ]
+      }
+    ]
+  },
+  "comparison": {
+    "reconstructed_image_order_side_edge_vs_physical_long_dimension": {
+      "absolute_error_mm": 1.5010240773736996,
+      "distance_outside_interval_mm": 0.5010240773736996,
+      "inside_reference_interval": false,
+      "outside_direction": "below_lower_bound",
+      "percentage_error": 1.7174188528303196,
+      "physical_mm": 87.4,
+      "reconstructed_mm": 85.8989759226263,
+      "reference_interval_mm": [
+        86.4,
+        88.4
+      ],
+      "signed_error_mm": -1.5010240773736996
+    },
+    "reconstructed_image_order_top_edge_vs_physical_short_dimension": {
+      "absolute_error_mm": 2.043447231061016,
+      "distance_outside_interval_mm": 1.043447231061015,
+      "inside_reference_interval": false,
+      "outside_direction": "above_upper_bound",
+      "percentage_error": 4.136532856398818,
+      "physical_mm": 49.4,
+      "reconstructed_mm": 51.443447231061015,
+      "reference_interval_mm": [
+        48.4,
+        50.4
+      ],
+      "signed_error_mm": 2.043447231061016
+    }
+  },
+  "correspondences": {
+    "ids": [
+      "top_left",
+      "top_right",
+      "bottom_right",
+      "bottom_left"
+    ],
+    "selection_method": "straight outer card-edge boundary fits intersected at adjacent edges; reviewed annotated diagnostics",
+    "view1_points": [
+      [
+        2028.9675,
+        4262.2959
+      ],
+      [
+        2583.947,
+        4272.3262
+      ],
+      [
+        2552.8916,
+        5268.3545
+      ],
+      [
+        1991.4392,
+        5270.2217
+      ]
+    ],
+    "view2_points": [
+      [
+        1937.9015,
+        4150.957
+      ],
+      [
+        2431.8926,
+        4146.6089
+      ],
+      [
+        2412.6289,
+        5028.2598
+      ],
+      [
+        1913.7698,
+        5050.6479
+      ]
+    ]
+  },
+  "diagnostics": {
+    "median_object_parallax_degrees": 1.8394634417861768,
+    "opposite_edge_lengths_mm": {
+      "height": [
+        83.79196501779475,
+        88.00598682745785
+      ],
+      "width": [
+        51.705778335164545,
+        51.18111612695749
+      ]
+    },
+    "planarity_max_mm": 2.844306613864614,
+    "planarity_rms_mm": 2.752629492520379,
+    "positive_depth_and_reprojection_gate": "passed for 4/4",
+    "rectangle_dimensions_mm": {
+      "height": 85.8989759226263,
+      "width": 51.443447231061015
+    },
+    "reprojection_error_view1_px": [
+      0.5485727552662509,
+      0.9315431126565824,
+      4.435988933079902,
+      3.500428214099659
+    ],
+    "reprojection_error_view2_px": [
+      0.49591193921605226,
+      0.8380786040410964,
+      3.948759833779211,
+      3.1492581986724164
+    ],
+    "right_angle_deviations_degrees": [
+      1.3933981346782502,
+      2.746279376541068,
+      6.690218638687625,
+      6.918574603503586
+    ],
+    "total_landmarks": 4,
+    "valid_landmarks": 4
+  },
+  "physical_accuracy_acceptance": "No percentage-error acceptance threshold was introduced. Geometric quality gates passed, but neither dimension falls within its provisional physical interval.",
+  "physical_measurements": {
+    "reference_intervals_mm": {
+      "height": [
+        48.4,
+        50.4
+      ],
+      "width": [
+        86.4,
+        88.4
+      ]
+    },
+    "reported_height_mean_mm": 49.4,
+    "reported_height_readings_mm": [
+      49.0,
+      49.8,
+      49.4
+    ],
+    "reported_width_mean_mm": 87.4,
+    "reported_width_readings_mm": [
+      87.0,
+      88.0,
+      87.2
+    ],
+    "ruler_evidence": {
+      "available_photographs": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "rectangle_measurement_photographs_present": false,
+      "relevance": "These photographs document the earlier flashcard experiment, not the FREE ADMISSION rectangle measurements, so endpoint alignment for this experiment is not independently verified."
+    },
+    "ruler_subdivision_mm": 1.0,
+    "uncertainty_justification": "\u00b11.0 mm is a conservative provisional bound relative to the 1 mm ruler subdivisions and the observed repeated-reading ranges (1.0 mm width range; 0.8 mm height range). It is not a measured stereo-system uncertainty and remains subject to verification against ruler photographs and the measurement setup.",
+    "uncertainty_mm": 1.0,
+    "uncertainty_status": "PROVISIONAL - supported by 1 mm subdivisions and repeated-reading spread; endpoint alignment/setup photographs not available for this rectangle",
+    "uncertainty_type": "provisional_physical_measurement_uncertainty"
+  },
+  "schema_version": 1,
+  "status": "COMPUTED - PHYSICAL VALIDATION PENDING UNCERTAINTY RECORD",
+  "validation_decision": "NUMERICAL COMPARISON - BOTH PROVISIONAL \u00b11.0 MM PHYSICAL INTERVALS FAIL; PHYSICAL VALIDATION NOT COMPLETE"
+}

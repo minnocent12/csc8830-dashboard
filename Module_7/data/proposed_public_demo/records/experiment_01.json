@@ -1,0 +1,219 @@
+{
+  "calibration_id": "module2-originals-module7-recompute",
+  "comparison": {
+    "absolute_error_mm": 0.7943207263526944,
+    "interval_margin_to_lower_bound_mm": 0.2056792736473056,
+    "interval_margin_to_upper_bound_mm": 1.7943207263526944,
+    "percentage_error": 0.8214278452458059,
+    "signed_error_mm": -0.7943207263526944,
+    "within_reference_interval": true
+  },
+  "coordinate_space": "portrait calibration frame, raw pixel units, image size (4284, 5712)",
+  "decision": "PHYSICAL_VALIDATION_VALIDATED_EQUIVALENT_EDGE_ASSUMPTION",
+  "endpoint_ids": [
+    "flashcard_top_left",
+    "flashcard_top_right"
+  ],
+  "endpoint_pixels_calibration_view1": [
+    [
+      1971.5,
+      4657.0
+    ],
+    [
+      1942.0,
+      5485.0
+    ]
+  ],
+  "endpoint_pixels_calibration_view2": [
+    [
+      2050.0,
+      3910.0
+    ],
+    [
+      2075.0,
+      4763.0
+    ]
+  ],
+  "endpoint_pixels_raw_view1": [
+    [
+      4657.0,
+      2311.5
+    ],
+    [
+      5485.0,
+      2340.8
+    ]
+  ],
+  "endpoint_pixels_raw_view2": [
+    [
+      3910.0,
+      2233.0
+    ],
+    [
+      4763.0,
+      2208.0
+    ]
+  ],
+  "endpoint_selection_method": "visible intersections of the front-face top edge with its left/right front-face side edges; reviewed in both original photographs and portrait-coordinate overlays",
+  "endpoint_selection_review": {
+    "fixed_coordinates_used": true,
+    "local_sensitivity_pixel_perturbation_plus_minus_2_px": {
+      "base_length_mm": 95.90567927364731,
+      "max_length_mm": 98.22056313039327,
+      "mean_length_mm": 95.94113148683657,
+      "min_length_mm": 94.10826469319063,
+      "note": "Diagnostic sensitivity only; selected coordinates and reported reconstruction were not changed.",
+      "sample_count": 6561
+    }
+  },
+  "ground_truth": {
+    "actual_length_mm": 96.7,
+    "mean_length_mm": 96.7,
+    "measurements_mm": [
+      96.7
+    ],
+    "reference_interval_mm": [
+      95.7,
+      97.7
+    ],
+    "uncertainty_basis": "\u00b11 mm retained as the physical-ruler uncertainty; no greater precision claimed and no stereo uncertainty inferred",
+    "uncertainty_mm": 1.0
+  },
+  "object": "flashcard box",
+  "pose_baseline_mm": 83.98562264342526,
+  "pose_method": "checkerboard_pnp",
+  "pose_reused_without_rescaling": true,
+  "pose_scale_source": "checkerboard_solvePnP",
+  "quality": {
+    "all_points_valid": true,
+    "geometry_acceptance": "passed for finite triangulation, positive depth, parallax, and <=5 px reprojection guard",
+    "limitations": [
+      "Endpoint localization and pose/calibration uncertainty are not formally propagated.",
+      "The checkerboard-derived pose passes the in-sample board check; the current user-reported physical measurement is numerically consistent with the independent flashcard segment.",
+      "The 83.985623 mm baseline is checkerboard-PnP-derived, not an independently measured camera-center displacement.",
+      "The lower ruler edge is physically equivalent to the reconstructed upper edge only under the explicit planar-rectangular-face assumption; literal upper-edge endpoint identity is not claimed."
+    ],
+    "maximum_reprojection_error_px": 1.3779899477340898,
+    "median_parallax_degrees": 7.679292234415925,
+    "minimum_parallax_degrees": 7.050348340363745,
+    "physical_acceptance": "passed under explicit equivalent-edge assumption: reconstructed upper-edge length is within 95.7-97.7 mm for the independently measured corresponding lower front-face width",
+    "positive_depth_check": "passed",
+    "uncertainty_statement": "\u00b11 mm is the independent ruler uncertainty only; the current pipeline provides no formal propagated reconstruction uncertainty."
+  },
+  "reconstruction": {
+    "all_positive_depth_view1": true,
+    "all_positive_depth_view2": true,
+    "euclidean_segment_length_mm": 95.90567927364731,
+    "parallax_degrees": [
+      8.308236128468105,
+      7.050348340363745
+    ],
+    "points_3d_mm": [
+      [
+        -14.330552456746673,
+        217.47280214121025,
+        485.1493070903415
+      ],
+      [
+        -16.983828185786592,
+        312.15422849034877,
+        470.10646994643645
+      ]
+    ],
+    "reprojection_error_view1_px": [
+      1.3508892637610523,
+      0.5955028691600426
+    ],
+    "reprojection_error_view2_px": [
+      1.3779899477340898,
+      0.6055175059481271
+    ],
+    "valid_mask": [
+      true,
+      true
+    ],
+    "view1_depth_z_mm": [
+      485.1493070903415,
+      470.10646994643645
+    ],
+    "view2_depth_z_mm": [
+      476.1898329465017,
+      463.1967895217476
+    ]
+  },
+  "ruler_evidence": {
+    "additional_evidence_required": "None for the documented equivalent-edge validation; an exact upper-edge ruler photograph would only be required if literal same-endpoint identity is demanded instead of the explicit rectangular-face assumption.",
+    "claimed_measurement_mm": 96.7,
+    "claimed_uncertainty_mm": 1.0,
+    "endpoint_match_to_stereo": "equivalent_physical_width_supported; literal_top_edge_endpoint_identity_not_claimed",
+    "equivalent_edge_assessment": {
+      "explicit_assumption": "The printed front face is modeled as a planar rectangle, so its upper and lower opposite edges have equal physical length.",
+      "not_inferred_from_projection_only": true,
+      "observed_evidence": "The clear photographs show a rigid box front face bounded by four visible straight seams and physical corners; clear2 measures the lower boundary between the left and right side boundaries.",
+      "scientific_justification": "The assumption is supported by the manufactured box geometry and visible straight boundary/corner structure, but exact right angles and equality are not independently metrologically measured.",
+      "validation_scope": "The physical result validates the front-face width dimension under this equivalent-edge assumption, not literal identity of the upper-edge pixel endpoints."
+    },
+    "evidence_status": "photographs_inspected; clear2_supports_approximately_96_70_mm_for_the_corresponding_front_face_width",
+    "image_metadata": [
+      {
+        "camera": "Apple iPhone 15 Pro Max",
+        "capture_timestamp": "2026:10:23 03:40:47",
+        "decoded_size": [
+          4032,
+          3024
+        ]
+      },
+      {
+        "camera": "Apple iPhone 15 Pro Max",
+        "capture_timestamp": "2026:10:23 17:42:07",
+        "decoded_size": [
+          4032,
+          3024
+        ]
+      },
+      {
+        "camera": "Apple iPhone 15 Pro Max",
+        "capture_timestamp": "2026:10:23 17:42:26",
+        "decoded_size": [
+          4032,
+          3024
+        ]
+      },
+      {
+        "camera": "Apple iPhone 15 Pro Max",
+        "capture_timestamp": "2026:10:23 17:42:32",
+        "decoded_size": [
+          4032,
+          3024
+        ]
+      }
+    ],
+    "photograph_paths": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "precision_claim": "Only \u00b11 mm is recorded; no greater precision is inferred.",
+    "status": "validated_under_equivalent_rectangular_face_edge_assumption",
+    "supports_96_70_mm": "supports_corresponding_front_face_width",
+    "uncertainty_assessment": "\u00b11 mm is plausible for the visible metric ruler reading and corner placement, but it remains physical-measurement uncertainty only and is not a propagated stereo uncertainty.",
+    "visible_edge_assessment": "clear2 shows the lower parallel edge of the printed front face between its left and right outer corners; clear1 and clear3 provide additional ruler views but are less direct for the selected width",
+    "visible_scale_assessment": "clear2 shows a metric centimetre scale labeled 0 cm through the visible range with millimetre subdivisions",
+    "zero_mark_visible": true
+  },
+  "schema_version": 1,
+  "secondary_reference": {
+    "nominal_dimensions_mm": [
+      100.0,
+      80.0,
+      60.0
+    ],
+    "relationship_to_ground_truth": "kept separate from the current 96.70 \u00b1 1.00 mm physical measurement",
+    "status": "user_reported_product_illustration_not_available_in_workspace",
+    "use": "secondary reference information only; not used for calibration, metric scaling, endpoint selection, or acceptance ground truth"
+  },
+  "segment": "straight horizontal top edge of the printed front face from upper-left outer corner A to upper-right outer corner B",
+  "status": "physically_validated_under_equivalent_rectangular_edge_assumption",
+  "validation_type": "independent_physical_segment"
+}

@@ -1,0 +1,234 @@
+{
+  "calibration": {
+    "calibration_id": "module2-originals-module7-recompute",
+    "image_size_wh": [
+      4284,
+      5712
+    ],
+    "pattern_size_internal_corners": [
+      9,
+      6
+    ],
+    "square_size": 25.0,
+    "square_unit": "mm"
+  },
+  "capture_assessment": {
+    "card_homography_residuals_px": [
+      2.0239755258503513,
+      2.175091500303908,
+      1.8095722723905474,
+      3.4922342054291846
+    ],
+    "card_visible_both": true,
+    "checkerboard_detected_both": true,
+    "resolution_compatible_after_normalization": true,
+    "same_phone_model": true,
+    "stationarity_assessment": "No definite motion is demonstrated. Board-to-card homography residuals for the four correspondences are 1.81-3.49 px, consistent with the same stationary scene at this image resolution, though not an independent proof of zero motion."
+  },
+  "checkerboard_pnp": {
+    "baseline_mm": 6.041061521233267,
+    "method": "checkerboard_pnp",
+    "relative_translation_metric_mm": [
+      1.4332468947537578,
+      2.144083681692834,
+      -5.462886856589876
+    ],
+    "views": [
+      {
+        "corners_detected": 54,
+        "pnp_rms_reprojection_error_px": 1.444383001414725,
+        "translation_board_to_camera_mm": [
+          -48.689577931470794,
+          22.973873269615435,
+          353.35005639026986
+        ]
+      },
+      {
+        "corners_detected": 54,
+        "pnp_rms_reprojection_error_px": 1.5553430361573286,
+        "translation_board_to_camera_mm": [
+          -50.77894595457688,
+          25.636315867315556,
+          347.3497236719471
+        ]
+      }
+    ]
+  },
+  "comparison": {
+    "accepted_dimension_comparison": "NOT COMPUTED because the rectangle quality gate rejected the reconstructed geometry",
+    "ungated_diagnostic_only": {
+      "raw_long_side_height_mean_vs_width_ground_truth": {
+        "absolute_error_mm": 8.0351177055434,
+        "distance_outside_interval_mm": 7.035117705543399,
+        "inside_reference_interval": false,
+        "percentage_error": 9.193498518928374,
+        "physical_mean_mm": 87.4,
+        "reconstructed_mm": 95.4351177055434,
+        "reference_interval_mm": [
+          86.4,
+          88.4
+        ],
+        "signed_error_mm": 8.0351177055434
+      },
+      "raw_short_side_width_mean_vs_height_ground_truth": {
+        "absolute_error_mm": 10.495163032992778,
+        "distance_outside_interval_mm": 9.495163032992778,
+        "inside_reference_interval": false,
+        "percentage_error": 21.24526929755623,
+        "physical_mean_mm": 49.4,
+        "reconstructed_mm": 59.89516303299278,
+        "reference_interval_mm": [
+          48.4,
+          50.4
+        ],
+        "signed_error_mm": 10.495163032992778
+      }
+    }
+  },
+  "correspondences": {
+    "ids": [
+      "top_left",
+      "top_right",
+      "bottom_right",
+      "bottom_left"
+    ],
+    "selection_method": "straight outer card-edge boundary fits intersected at adjacent edges; both annotated images reviewed",
+    "view1_points": [
+      [
+        2049.75708,
+        4409.791992
+      ],
+      [
+        2636.371582,
+        4405.06543
+      ],
+      [
+        2618.670898,
+        5458.541992
+      ],
+      [
+        2027.498535,
+        5472.659668
+      ]
+    ],
+    "view2_points": [
+      [
+        2029.764404,
+        4465.17627
+      ],
+      [
+        2623.593506,
+        4454.421875
+      ],
+      [
+        2611.290527,
+        5520.12207
+      ],
+      [
+        2010.543457,
+        5547.395996
+      ]
+    ]
+  },
+  "decision": "SECOND EXPERIMENT NOT VALIDATED. The pair has usable corner reprojection and positive depth, but the 6.041 mm baseline and 0.669 degree parallax produce inconsistent opposite 3D edges. Raw diagnostic lengths are not accepted measurements and were not used to declare physical agreement.",
+  "physical_measurements": {
+    "height_mean_mm": 49.4,
+    "height_readings_mm": [
+      49.0,
+      49.8,
+      49.4
+    ],
+    "reference_intervals_mm": {
+      "height": [
+        48.4,
+        50.4
+      ],
+      "width": [
+        86.4,
+        88.4
+      ]
+    },
+    "uncertainty_mm": 1.0,
+    "width_mean_mm": 87.4,
+    "width_readings_mm": [
+      87.0,
+      88.0,
+      87.2
+    ]
+  },
+  "rectangle_quality_gate": {
+    "accepted": false,
+    "configured_quality_thresholds": {
+      "opposite_edge_disagreement_fraction": 0.05,
+      "planarity_fraction": 0.05,
+      "point_reprojection_error_px": 5.0,
+      "right_angle_deviation_degrees": 15.0
+    },
+    "edge_lengths_mm": [
+      52.6599743645838,
+      103.93118409021027,
+      67.13035170140175,
+      86.93905132087653
+    ],
+    "opposite_height_disagreement_fraction": 0.17804905759912673,
+    "opposite_width_disagreement_fraction": 0.24159509055592776,
+    "planarity_max_mm": 5.955186107981672,
+    "planarity_rms_mm": 5.08290142790306,
+    "raw_diagnostic_height_mean_mm": 95.4351177055434,
+    "raw_diagnostic_width_mean_mm": 59.89516303299278,
+    "rejection_reason": "opposite rectangle edges disagree beyond the configured 5% limit; measure_object.py produced no accepted rectangle dimension result",
+    "right_angle_deviations_degrees": [
+      1.4651008206322018,
+      5.882570025269871,
+      21.92739967839229,
+      13.030217951018173
+    ]
+  },
+  "ruler_evidence": {
+    "object_identity": "Evidence review correction: [original evidence file] and [original evidence file] show the FREE ADMISSION rectangle used in this experiment. The ruler zero reference, millimetre subdivisions, and long/short edge endpoints are visible sufficiently to support the separately recorded 87.40 mm and 49.40 mm means.",
+    "provisional_uncertainty_mm": 1.0,
+    "uncertainty_status": "SUPPORTED PROVISIONAL ONLY - 1 mm subdivisions, endpoint alignment, perspective, and the user-provided repeated readings support a conservative \u00b11.00 mm physical bound; this is not stereo-system uncertainty."
+  },
+  "schema_version": 1,
+  "status": "NOT VALIDATED - RECTANGLE QUALITY GATE FAILED",
+  "triangulation": {
+    "median_parallax_degrees": 0.6690381255054031,
+    "points_3d_mm": [
+      [
+        -3.4500366993977143,
+        132.92920653708097,
+        344.092966978785
+      ],
+      [
+        47.96335311804727,
+        136.8205021371771,
+        354.79782877661967
+      ],
+      [
+        48.92016202250163,
+        240.24467446894965,
+        365.00645848884574
+      ],
+      [
+        -4.99135951710755,
+        218.8905525695019,
+        331.1828950641905
+      ]
+    ],
+    "positive_depth_and_point_reprojection_gate": "passed for 4/4",
+    "reprojection_error_view1_px": [
+      0.22122201407077893,
+      0.7133412226387754,
+      0.27347283375953974,
+      1.081586176929038
+    ],
+    "reprojection_error_view2_px": [
+      0.22461392029690383,
+      0.7233870583431536,
+      0.27713798236468073,
+      1.0987230313328828
+    ],
+    "total_landmarks": 4,
+    "valid_landmarks": 4
+  }
+}

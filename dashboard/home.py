@@ -76,6 +76,11 @@ MODULE_INFO: tuple[ModuleInfo, ...] = (
         "Optical flow, feature tracking, bilinear interpolation and multi-view planar "
         "reconstruction.",
     ),
+    ModuleInfo(
+        "Module 7",
+        "Calibrated Stereo Measurement",
+        "Metric 3D reconstruction, depth estimation and physical object-dimension measurement.",
+    ),
 )
 
 

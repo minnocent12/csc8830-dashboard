@@ -1,0 +1,310 @@
+{
+  "calibration": {
+    "calibration_id": "module2-originals-module7-recompute",
+    "checkerboard_corners_view1": 54,
+    "checkerboard_corners_view2": 54,
+    "checkerboard_pnp_rms_px": {
+      "view1": 1.6030854918198283,
+      "view2": 2.4288763400678315
+    },
+    "pattern_size_internal_corners": [
+      9,
+      6
+    ],
+    "square_size_mm": 25.0
+  },
+  "comparisons": [
+    {
+      "absolute_error_mm": 40.497091357993156,
+      "edge_id": "v0-v1",
+      "percentage_error": 36.815537598175595,
+      "physical_label": "side_1",
+      "physical_mean_mm": 110.0,
+      "reconstructed_length_mm": 150.49709135799316,
+      "reference_interval_mm": [
+        109.0,
+        111.0
+      ],
+      "signed_error_mm": 40.497091357993156,
+      "uncertainty_mm": 1.0,
+      "within_reference_interval": false
+    },
+    {
+      "absolute_error_mm": 4.814944556043059,
+      "edge_id": "v1-v2",
+      "percentage_error": 3.439246111459328,
+      "physical_label": "base",
+      "physical_mean_mm": 140.0,
+      "reconstructed_length_mm": 144.81494455604306,
+      "reference_interval_mm": [
+        139.0,
+        141.0
+      ],
+      "signed_error_mm": 4.814944556043059,
+      "uncertainty_mm": 1.0,
+      "within_reference_interval": false
+    },
+    {
+      "absolute_error_mm": 16.796370593858683,
+      "edge_id": "v2-v0",
+      "percentage_error": 12.350272495484326,
+      "physical_label": "side_2",
+      "physical_mean_mm": 136.0,
+      "reconstructed_length_mm": 152.79637059385868,
+      "reference_interval_mm": [
+        135.0,
+        137.0
+      ],
+      "signed_error_mm": 16.796370593858683,
+      "uncertainty_mm": 1.0,
+      "within_reference_interval": false
+    }
+  ],
+  "decision": "GEOMETRY GATES PASSED; PHYSICAL ACCURACY NOT VALIDATED - all three reconstructed edges fall outside their provisional \u00b11 mm reference intervals.",
+  "diagnostic_investigation": {
+    "decision_unchanged": "EXPERIMENT COMPLETE - PHYSICAL MEASUREMENTS DOCUMENTED; STEREO TRIANGLE ACCURACY NOT VALIDATED",
+    "findings": [
+      "The original raw OpenCV coordinate frame, calibration image size, distortion model, projection convention, saved checkerboard pose, and saved triangle triangulation are mutually consistent.",
+      "Checkerboard re-detection returned 54 corners in each image and agreed with the saved checkerboard correspondences to less than 0.000001 px.",
+      "Recomputed PnP changed the baseline by only 0.000003 mm and the relative rotation difference was 0.0 degrees.",
+      "No independently demonstrated vertex-order, edge-mapping, or software defect was found.",
+      "The v1 point is close to the 5 px reprojection limit and is the most sensitive landmark in the one-coordinate perturbation audit.",
+      "The three-point planarity residual is not an independent accuracy test."
+    ],
+    "status": "complete"
+  },
+  "limitations": [
+    "The v1 correspondence has reprojection error close to, but below, the 5 px implementation limit.",
+    "The 37.879812 mm baseline and approximately 4.423674\u00b0 median triangle parallax make edge lengths sensitive to pixel and pose error.",
+    "The three-point planarity result is structurally non-discriminating; it does not independently prove the cardboard is planar.",
+    "No calibration, pose, scale, correspondence, threshold, or physical measurement was adjusted to improve agreement."
+  ],
+  "orientation_handling": {
+    "inspection_copies": [
+      null,
+      null
+    ],
+    "originals_modified": false,
+    "processing_inputs": "untouched originals; OpenCV raw frame already matches calibration image_size [4284, 5712]"
+  },
+  "original_stereo_inputs": [
+    {
+      "exif": {
+        "Make": "Apple",
+        "Model": "iPhone 15 Pro Max",
+        "Orientation": 6,
+        "Software": "27.0.1"
+      },
+      "native_size_wh": [
+        5712,
+        4284
+      ],
+      "sha256": "ba8fc85a7c8691bd2b129fa410a811bb0bee6aee03c5d80c4301bc4a35e68aa4"
+    },
+    {
+      "exif": {
+        "Make": "Apple",
+        "Model": "iPhone 15 Pro Max",
+        "Orientation": 6,
+        "Software": "27.0.1"
+      },
+      "native_size_wh": [
+        5712,
+        4284
+      ],
+      "sha256": "d2c1e08588beca118ecf2b4f03f451d323cb33ab2a1eb9b7a1c713b5b7429777"
+    }
+  ],
+  "physical_measurements": {
+    "edge_mapping": {
+      "v0-v1": {
+        "basis": "ruler aligned with the same v0-v1 physical edge",
+        "mean_mm": 110.0,
+        "physical_edge": "side_1",
+        "ruler_photo": "[original evidence file]"
+      },
+      "v1-v2": {
+        "basis": "ruler aligned with the same v1-v2 physical edge",
+        "mean_mm": 140.0,
+        "physical_edge": "base",
+        "ruler_photo": "[original evidence file]"
+      },
+      "v2-v0": {
+        "basis": "ruler aligned with the same v2-v0 physical edge",
+        "mean_mm": 136.0,
+        "physical_edge": "side_2",
+        "ruler_photo": "[original evidence file]"
+      }
+    },
+    "evidence_note": "Metric ruler markings and the measured edge endpoints are visible in [original evidence range]; the repeated readings remain user-provided and are not used for stereo scaling.",
+    "means_mm": {
+      "base": 140.0,
+      "side_1": 110.0,
+      "side_2": 136.0
+    },
+    "readings_mm": {
+      "base": [
+        140.0,
+        141.0,
+        139.0
+      ],
+      "side_1": [
+        109.0,
+        110.0,
+        111.0
+      ],
+      "side_2": [
+        135.0,
+        136.0,
+        137.0
+      ]
+    },
+    "ruler_resolution_mm": 1.0,
+    "uncertainty_mm": 1.0,
+    "uncertainty_status": "provisional; ruler photographs support the three edge assignments, but this remains physical-measurement uncertainty, not stereo uncertainty"
+  },
+  "ruler_evidence": [
+    {
+      "exif": {
+        "Make": "Apple",
+        "Model": "iPhone 15 Pro Max",
+        "Orientation": 3,
+        "Software": "27.0.1"
+      },
+      "native_size_wh": [
+        4032,
+        3024
+      ],
+      "sha256": "73fd224173efcaa836ce7863061919807950c002179988ad759687a3df57f51f"
+    },
+    {
+      "exif": {
+        "Make": "Apple",
+        "Model": "iPhone 15 Pro Max",
+        "Orientation": 3,
+        "Software": "27.0.1"
+      },
+      "native_size_wh": [
+        4032,
+        3024
+      ],
+      "sha256": "9478837e15cd74231c0dc25fb3bf6532851f003932c36f3d6bf3ebd77a55cb62"
+    },
+    {
+      "exif": {
+        "Make": "Apple",
+        "Model": "iPhone 15 Pro Max",
+        "Orientation": 3,
+        "Software": "27.0.1"
+      },
+      "native_size_wh": [
+        4032,
+        3024
+      ],
+      "sha256": "145c497b68bd4116764005667aae2d4678bcc317e49b88ab347f093b60bb6d25"
+    }
+  ],
+  "schema_version": 1,
+  "status": "EXPERIMENT COMPLETE - PHYSICAL MEASUREMENTS DOCUMENTED; STEREO TRIANGLE ACCURACY NOT VALIDATED",
+  "stereo_geometry": {
+    "all_checkerboard_points_valid": true,
+    "baseline_mm": 37.879812317724635,
+    "checkerboard_median_parallax_degrees": 5.3211770958610405,
+    "pose_method": "checkerboard_pnp",
+    "translation_metric_mm": [
+      -3.671683936009856,
+      -37.64715594656616,
+      2.022515126029532
+    ]
+  },
+  "triangle_reconstruction": {
+    "all_positive_depth": true,
+    "configured_point_reprojection_limit_px": 5.0,
+    "depths_view1_mm": [
+      382.79796690715347,
+      460.0218422237295,
+      371.35980943860096
+    ],
+    "edge_lengths_mm": {
+      "v0-v1": 150.49709135799316,
+      "v1-v2": 144.81494455604306,
+      "v2-v0": 152.79637059385868
+    },
+    "maximum_reprojection_error_view1_px": 4.986291648278411,
+    "maximum_reprojection_error_view2_px": 4.973531052010836,
+    "median_vertex_parallax_degrees": 4.423674013092991,
+    "other_checks": {
+      "collinearity_rejected": false,
+      "nonzero_edges": true,
+      "opposite_edge_check": "not applicable",
+      "right_angle_check": "not applicable"
+    },
+    "planarity_max_mm": 1.4210854715202004e-14,
+    "planarity_note": "With exactly three non-collinear vertices, a fitted plane is mathematically defined by the three points; this is not an independent flatness test.",
+    "planarity_rms_mm": 1.0255800994045675e-14,
+    "reprojection_error_view1_px": [
+      1.9692722901538469,
+      4.986291648278411,
+      1.0113660083568274
+    ],
+    "reprojection_error_view2_px": [
+      1.9682699492156404,
+      4.973531052010836,
+      1.0090285105998806
+    ],
+    "vertices_3d_mm": [
+      [
+        -44.73372890443484,
+        272.8373769983288,
+        382.79796690715347
+      ],
+      [
+        -52.9777888494485,
+        143.92700866463315,
+        460.0218422237295
+      ],
+      [
+        60.05194983969162,
+        162.22155104872462,
+        371.35980943860096
+      ]
+    ]
+  },
+  "vertex_correspondence": {
+    "diagnostic_images": [
+      null,
+      null,
+      null
+    ],
+    "ordering": "v0 left/top, v1 right/top, v2 lower vertex in the normalized inspection frame; clockwise",
+    "points_view1": [
+      [
+        1622.0,
+        5679.0
+      ],
+      [
+        1630.0,
+        4114.0
+      ],
+      [
+        2740.0,
+        4608.0
+      ]
+    ],
+    "points_view2": [
+      [
+        1667.0,
+        5322.0
+      ],
+      [
+        1650.0,
+        3812.0
+      ],
+      [
+        2771.0,
+        4215.0
+      ]
+    ],
+    "selection_basis": "outer triangle corners selected from the visible boundary contour; not inferred from physical lengths"
+  }
+}
